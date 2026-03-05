@@ -123,14 +123,8 @@ get_header();
 
 <!-- About Start -->
 <div class="about wow fadeInUp" data-wow-delay="0.1s">
-	<div class="container">
+	<div class="container py-lg-5 py-0">
 		<div class="row align-items-center">
-
-			<div class="col-lg-5 col-md-6">
-				<div class="about-img">
-					<img src="<?php bloginfo('template_directory'); ?>/img/about.jpg" alt="Mahalaxmi Construction">
-				</div>
-			</div>
 
 			<div class="col-lg-7 col-md-6">
 				<div class="section-header text-left">
@@ -146,6 +140,12 @@ get_header();
 					<p>We also provide compound wall construction, retaining wall solutions, PCC concrete works, brick bed coba waterproofing, and complete home renovation services. Our approach focuses on detailed site inspection.</p>
 
 					<a class="btn" href="#services">Explore Our Services</a>
+				</div>
+			</div>
+
+			<div class="col-lg-5 col-md-6">
+				<div class="about-img">
+					<img src="<?php bloginfo('template_directory'); ?>/img/gallery/25.jpeg" alt="Mahalaxmi Construction">
 				</div>
 			</div>
 
@@ -172,7 +172,7 @@ get_header();
 					<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
 						<i class="fa fa-check"></i>
 					</div>
-					<span>Expert in Terrace, Basement & Bathroom Waterproofing</span>
+					<span>Expert in Terrace, Basement Waterproofing</span>
 				</div>
 
 				<div class="d-flex align-items-center text-white mb-3">
@@ -310,7 +310,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-1.jpg" alt="Terrace Waterproofing">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/1.jpeg" alt="Terrace Waterproofing">
 						<div class="service-overlay">
 							<p>
 								Professional terrace and balcony waterproofing solutions to prevent leakage, cracks, and seepage using high-quality chemical coatings and brick bat coba treatment.
@@ -328,7 +328,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-2.jpg" alt="Basement Waterproofing">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/2.jpeg" alt="Basement Waterproofing">
 						<div class="service-overlay">
 							<p>
 								Complete basement and retaining wall waterproofing systems to protect structures from groundwater damage and long-term moisture issues.
@@ -346,7 +346,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-3.jpg" alt="Bathroom Waterproofing">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/7.jpeg" alt="Bathroom Waterproofing">
 						<div class="service-overlay">
 							<p>
 								Advanced bathroom and water tank waterproofing to stop leakage, damp walls, and tile damage using reliable and durable materials.
@@ -364,7 +364,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-4.jpg" alt="Compound Wall">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/4.jpeg" alt="Compound Wall">
 						<div class="service-overlay">
 							<p>
 								RCC compound wall, brick compound wall, and retaining wall construction with strong foundation and long-lasting structural support.
@@ -382,7 +382,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-5.jpg" alt="Plastering Work">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/5.jpeg" alt="Plastering Work">
 						<div class="service-overlay">
 							<p>
 								Internal and external plastering services including Chanla plaster, Taar plaster, and Daba plaster for smooth finishing and durability.
@@ -400,7 +400,7 @@ get_header();
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/service-6.jpg" alt="Home Renovation">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/6.jpeg" alt="Home Renovation">
 						<div class="service-overlay">
 							<p>
 								Complete home renovation, repair (Todphod), RCC work, and structural improvement services with quality workmanship and timely delivery.
@@ -409,6 +409,60 @@ get_header();
 					</div>
 					<div class="service-text">
 						<h3>Home Renovation & Repair</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 7 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/8.jpeg" alt="RCC Construction">
+						<div class="service-overlay">
+							<p>
+								Strong RCC construction services including slab work, columns, beams, and structural frameworks designed for durability and safety.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>RCC Construction</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 8 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/9.jpeg" alt="Brick Work">
+						<div class="service-overlay">
+							<p>
+								Professional brickwork and block construction services for residential and commercial buildings ensuring strength and precise alignment.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>Brickwork & Masonry</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 9 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/10.jpeg" alt="Painting Services">
+						<div class="service-overlay">
+							<p>
+								Interior and exterior painting services with high-quality paints, waterproof coatings, and professional finishing for long-lasting protection.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>Painting & Finishing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -529,6 +583,81 @@ get_header();
 	</div>
 </div>
 <!-- Team End -->
+
+
+<!-- Testimonial Start -->
+<div class="testimonial wow fadeIn" data-wow-delay="0.1s">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="testimonial-slider-nav">
+					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-1.jpg" alt="Client Review"></div>
+					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-2.jpg" alt="Client Review"></div>
+					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-3.jpg" alt="Client Review"></div>
+					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-4.jpg" alt="Client Review"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="testimonial-slider">
+
+					<div class="slider-item">
+						<h3>Rahul Patil</h3>
+						<h4>Home Owner</h4>
+						<p>
+							Mahalaxmi Construction did excellent terrace waterproofing work at my home. Leakage problem is completely solved. Quality work and proper finishing. Highly recommended.
+						</p>
+					</div>
+
+					<div class="slider-item">
+						<h3>Sneha Kulkarni</h3>
+						<h4>Apartment Owner</h4>
+						<p>
+							Very professional team. They completed bathroom waterproofing and internal plaster work on time. Clean work and reasonable pricing.
+						</p>
+					</div>
+
+					<div class="slider-item">
+						<h3>Amit Jadhav</h3>
+						<h4>Property Developer</h4>
+						<p>
+							We hired them for RCC compound wall and retaining wall construction. Strong foundation work and proper supervision by owner Vishnu Chavan. Satisfied with the service.
+						</p>
+					</div>
+
+					<div class="slider-item">
+						<h3>Priya Deshmukh</h3>
+						<h4>Residential Client</h4>
+						<p>
+							Basement waterproofing work was done perfectly. Earlier we had heavy seepage issues, now completely fixed. Reliable and skilled team.
+						</p>
+					</div>
+
+					<div class="slider-item">
+						<h3>Sachin More</h3>
+						<h4>Villa Owner</h4>
+						<p>
+							They completed swimming pool waterproofing and terrace brick bat coba work with great quality. Good finishing and honest service.
+						</p>
+					</div>
+
+					<div class="slider-item">
+						<h3>Neha Shinde</h3>
+						<h4>Home Renovation Client</h4>
+						<p>
+							Home renovation and demolition (Todphod) work was done safely and professionally. Team handled everything smoothly from start to finish.
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Testimonial End -->
+
 
 
 <!-- FAQs Start -->
@@ -687,78 +816,127 @@ get_header();
 <!-- FAQs End -->
 
 
-<!-- Testimonial Start -->
-<div class="testimonial wow fadeIn" data-wow-delay="0.1s">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="testimonial-slider-nav">
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-1.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-2.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-3.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-4.jpg" alt="Client Review"></div>
+<!-- Quote Start -->
+<div class="container-fluid py-lg-5 py-0 wow fadeInUp" data-wow-delay="0.1s">
+	<div class="container py-5">
+		<div class="row g-5">
+
+			<div class="col-lg-7">
+				<div class="section-header text-start">
+					<p class="text-uppercase">Get a Free Estimate</p>
+					<h2>Planning Waterproofing or Construction Work? Get a Quote Today</h2>
 				</div>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-12">
-				<div class="testimonial-slider">
-
-					<div class="slider-item">
-						<h3>Rahul Patil</h3>
-						<h4>Home Owner</h4>
-						<p>
-							Mahalaxmi Construction did excellent terrace waterproofing work at my home. Leakage problem is completely solved. Quality work and proper finishing. Highly recommended.
-						</p>
+				<div class="row gx-3">
+					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+						<h5 class="mb-4 quote-subheading">
+							<i class="fa fa-reply m-2"></i>Quick Response within 24 hours
+						</h5>
 					</div>
 
-					<div class="slider-item">
-						<h3>Sneha Kulkarni</h3>
-						<h4>Apartment Owner</h4>
-						<p>
-							Very professional team. They completed bathroom waterproofing and internal plaster work on time. Clean work and reasonable pricing.
-						</p>
+					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+						<h5 class="mb-4 quote-subheading">
+							<i class="fa fa-tools m-2"></i>Professional Site Inspection
+						</h5>
+					</div>
+				</div>
+
+				<p class="mb-4">
+					Looking for reliable waterproofing or construction services? Mahalaxmi Construction offers
+					expert solutions including terrace waterproofing, bathroom waterproofing, water tank sealing,
+					plaster work, compound wall construction, basement waterproofing, and home renovation services.
+					Fill out the form to request a quote and our team will contact you shortly to discuss your project.
+				</p>
+
+				<div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
+
+					<div class="quote-call-icon d-flex align-items-center justify-content-center rounded"
+						style="width: 60px; height: 60px;">
+						<i class="fa fa-phone-alt text-white"></i>
 					</div>
 
-					<div class="slider-item">
-						<h3>Amit Jadhav</h3>
-						<h4>Property Developer</h4>
-						<p>
-							We hired them for RCC compound wall and retaining wall construction. Strong foundation work and proper supervision by owner Vishnu Chavan. Satisfied with the service.
-						</p>
-					</div>
-
-					<div class="slider-item">
-						<h3>Priya Deshmukh</h3>
-						<h4>Residential Client</h4>
-						<p>
-							Basement waterproofing work was done perfectly. Earlier we had heavy seepage issues, now completely fixed. Reliable and skilled team.
-						</p>
-					</div>
-
-					<div class="slider-item">
-						<h3>Sachin More</h3>
-						<h4>Villa Owner</h4>
-						<p>
-							They completed swimming pool waterproofing and terrace brick bat coba work with great quality. Good finishing and honest service.
-						</p>
-					</div>
-
-					<div class="slider-item">
-						<h3>Neha Shinde</h3>
-						<h4>Home Renovation Client</h4>
-						<p>
-							Home renovation and demolition (Todphod) work was done safely and professionally. Team handled everything smoothly from start to finish.
-						</p>
+					<div class="ps-4">
+						<h5 class="m-2 quote-subheading">Need immediate assistance?</h5>
+						<h4 class="m-2 fw-bold" style="font-size: 1.5rem; font-weight:bold;">
+							+91 7892100691
+						</h4>
 					</div>
 
 				</div>
 			</div>
+
+
+			<div class="col-lg-5">
+				<div class="quote-form rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
+
+					<form>
+
+						<div class="row g-3">
+
+							<div class="col-12 my-2">
+								<input type="text" class="form-control border-0"
+									placeholder="Your Name *"
+									style="height: 55px;" required>
+							</div>
+
+							<div class="col-12 my-2">
+								<input type="text" class="form-control border-0"
+									placeholder="Project Location"
+									style="height: 55px;">
+							</div>
+
+							<div class="col-12 my-2">
+								<input type="email" class="form-control border-0"
+									placeholder="Email Address *"
+									style="height: 55px;" required>
+							</div>
+
+							<div class="col-12 my-2">
+								<input type="tel" class="form-control border-0"
+									placeholder="Phone Number"
+									style="height: 55px;" required>
+							</div>
+
+							<div class="col-12 my-2">
+								<select class="form-select border-0"
+									style="height: 55px; width: 100%;" required>
+
+									<option selected disabled>Select Service *</option>
+									<option value="terrace-waterproofing">Terrace Waterproofing</option>
+									<option value="bathroom-waterproofing">Bathroom Waterproofing</option>
+									<option value="water-tank">Water Tank Waterproofing</option>
+									<option value="basement-waterproofing">Basement Waterproofing</option>
+									<option value="plaster-work">Plaster Work</option>
+									<option value="compound-wall">Compound Wall Construction</option>
+									<option value="home-renovation">Home Renovation</option>
+									<option value="other">Other</option>
+
+								</select>
+							</div>
+
+							<div class="col-12 my-2">
+								<textarea class="form-control border-0"
+									rows="3"
+									placeholder="Describe your project requirements"></textarea>
+							</div>
+
+							<div class="col-12 my-2">
+								<button class="btn w-100 py-3" type="submit">
+									Request a Quote
+								</button>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>
-<!-- Testimonial End -->
+<!-- Quote End -->
 
 
 <?php

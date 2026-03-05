@@ -16,59 +16,140 @@
 get_header();
 ?>
 
-<!-- Carousel Start -->
-<div id="carousel" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-target="#carousel" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel" data-slide-to="1"></li>
-		<li data-target="#carousel" data-slide-to="2"></li>
-	</ol>
+<div class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2>Contact Us</h2>
+			</div>
+			<div class="col-12">
+				<a href="">Home</a>
+				<a href="">Contact</a>
+			</div>
+		</div>
+	</div>
+</div>
 
-	<div class="carousel-inner">
 
-		<!-- Slide 1 -->
-		<div class="carousel-item active">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-1.jpg" alt="Mahalaxmi Construction">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Building • Waterproofing • Renovation</p>
-				<h1 class="animated fadeInLeft">Complete Construction & Waterproofing Solutions</h1>
-				<a class="btn animated fadeInUp" href="#contact">Get A Quote</a>
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light">
+	<div class="container py-5 py-sm-4 py-md-5 px-2 px-sm-3 px-md-4">
+
+		<div class="mx-auto text-center">
+			<div class="section-header text-center">
+				<h2 class="fw-bold" style="margin: 10px;">Get in Touch with Mahalaxmi Construction</h2>
+				<span class="text-muted">
+					Contact us for professional waterproofing & construction services in Pune.
+					Our team provides reliable solutions for terrace waterproofing, plaster work,
+					wall construction, home renovation projects.
+				</span>
 			</div>
 		</div>
 
-		<!-- Slide 2 -->
-		<div class="carousel-item">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-2.jpg" alt="Terrace Waterproofing">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Leakage? Seepage? Damp Walls?</p>
-				<h1 class="animated fadeInLeft">Expert Terrace & Basement Waterproofing Services</h1>
-				<a class="btn animated fadeInUp" href="#services">Get A Quote</a>
-			</div>
-		</div>
+		<div class="bg-white shadow p-3 p-sm-4 p-md-5">
+			<div class="row g-4">
 
-		<!-- Slide 3 -->
-		<div class="carousel-item">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-3.jpg" alt="Home Renovation">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Strong Foundation. Lasting Protection.</p>
-				<h1 class="animated fadeInLeft">Trusted Construction & Renovation Experts</h1>
-				<a class="btn animated fadeInUp" href="#contact">Get A Quote</a>
+				<!-- Contact Details -->
+				<div class="col-lg-6">
+
+					<div class="bg-white shadow p-3 p-sm-4 p-md-5">
+
+						<div class="py-2">
+
+							<h5 class="mb-3" style="font-weight: 700;">Mahalaxmi Construction</h5>
+
+							<h5 class="mt-4">Email:</h5>
+							<p>
+								<a href="mailto:info@mahalaxmiconstruction.in" class="text-dark text-decoration-none">
+									info@mahalaxmiconstruction.in
+								</a>
+							</p>
+
+							<h5 class="mt-4">Phone:</h5>
+							<p>
+								<a href="tel:+917892100691" class="text-dark text-decoration-none">
+									+91 7892100691
+								</a>
+							</p>
+
+							<h5 class="mt-4">Office Address:</h5>
+							<p>
+								Mahalaxmi Construction<br>
+								Pune, Maharashtra<br>
+								India
+							</p>
+
+							<h5 class="mt-4">Our Services:</h5>
+							<p>
+								Terrace Waterproofing, Bathroom Waterproofing, Water Tank Waterproofing,
+								RCC Wall Waterproofing, Plaster Work, Compound Wall Construction,
+								Basement Waterproofing, and Home Renovation Services.
+							</p>
+
+							<h5 class="mt-4">Social Media:</h5>
+
+							<div class="d-flex gap-3">
+
+								<a class="btn btn-outline-primary rounded-pill contact-icons" href="#" target="_blank">
+									<i class="fab fa-facebook-f"></i>
+								</a>
+
+								<a class="btn btn-outline-primary rounded-pill contact-icons" href="#" target="_blank">
+									<i class="fab fa-instagram"></i>
+								</a>
+
+								<a class="btn btn-outline-primary rounded-pill contact-icons" href="https://wa.me/917892100691" target="_blank">
+									<i class="fab fa-whatsapp"></i>
+								</a>
+
+								<a class="btn btn-outline-primary rounded-pill contact-icons" href="#" target="_blank">
+									<i class="fab fa-youtube"></i>
+								</a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Contact Form -->
+				<div class="col-lg-6">
+					<?php echo do_shortcode('[contact-form-7 id="2fb0c43" title="Contact form 1"]'); ?>
+				</div>
+
 			</div>
 		</div>
 
 	</div>
-
-	<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-
-	<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
 </div>
-<!-- Carousel End -->
+<!-- Contact End -->
+
+
+<!-- Contact Map Start -->
+<div class="container-fluid bg-white py-5">
+	<div class="container d-flex flex-column flex-lg-row gap-4 align-items-stretch">
+
+		<!-- Left Image -->
+		<div class="w-100 w-lg-50" style="flex: 1;">
+			<img src="<?php echo get_template_directory_uri(); ?>/img/about.jpg"
+				alt="Mahalaxmi Construction Work"
+				style="height: 450px; width: 100%; object-fit: cover;" />
+		</div>
+
+		<!-- Google Map -->
+		<div class="w-100 w-lg-50" style="flex: 1;">
+			<iframe
+				src="https://maps.google.com/maps?q=Pune%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+				width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+			</iframe>
+		</div>
+
+	</div>
+</div>
+<!-- Contact Map End -->
 
 
 

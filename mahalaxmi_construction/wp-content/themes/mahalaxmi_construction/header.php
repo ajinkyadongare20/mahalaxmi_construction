@@ -32,8 +32,10 @@
 
 	<!-- CSS Libraries -->
 	<!-- Bootstrap 5 CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 	<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
+	<!-- Bootstrap 4.6 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<link href="<?php bloginfo('template_directory'); ?>/lib/flaticon/font/flaticon.css" rel="stylesheet">
 	<link href="<?php bloginfo('template_directory'); ?>/lib/animate/animate.min.css" rel="stylesheet">
@@ -107,16 +109,18 @@
 		<div class="nav-bar">
 			<div class="container-fluid">
 				<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-					<a href="#" class="navbar-brand">MENU</a>
+					<a href="<?php echo site_url(); ?>" class="navbar-brand">
+						<span class="menu-text"></span>
+						<img src="<?php bloginfo('template_directory'); ?>/img/mahalaxmi_construction_logo.png" class="mobile-menu-logo" alt="Logo">
+					</a>
 					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbarCollapse"
+						data-toggle="collapse"
+						data-target="#navbarCollapse"
 						aria-controls="navbarCollapse"
 						aria-expanded="false"
 						aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 
 						<?php
@@ -131,8 +135,8 @@
 						));
 						?>
 
-						<a href="<?php echo site_url('/about'); ?>" class="btn btn-primary px-3 d-none d-lg-block">Get A Quote</a>
 					</div>
+					<a href="<?php echo site_url('/quote'); ?>" class="btn btn-primary px-3 d-none d-lg-block">Get A Quote</a>
 				</nav>
 
 				<!-- Full Screen Search End -->
