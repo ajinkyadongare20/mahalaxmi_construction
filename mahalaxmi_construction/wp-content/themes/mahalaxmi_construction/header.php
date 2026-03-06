@@ -48,6 +48,9 @@
 	<link href="<?php bloginfo('template_directory'); ?>/css/style.css" rel="stylesheet">
 </head>
 
+<?php
+$header_page_id = 13;
+?>
 
 <body>
 	<div class="wrapper">
@@ -58,43 +61,50 @@
 					<div class="col-lg-4 col-md-12">
 						<div class="logo header-logo">
 							<a href="index.html">
-								<!-- <h1>.</h1> -->
-								<img src="<?php bloginfo('template_directory'); ?>/img/mahalaxmi_construction_logo.png" alt="Logo">
+								<?php if ($header_company_logo = get_field('header_company_logo', $header_page_id)): ?>
+									<img src="<?php echo esc_url($header_company_logo); ?>" alt="Mahalaxmi Construction Logo">
+								<?php endif; ?>
 							</a>
 						</div>
 					</div>
+
 					<div class="col-lg-8 col-md-7 d-none d-lg-block">
 						<div class="row">
+							<!-- Working Hours -->
 							<div class="col-4">
 								<div class="top-bar-item">
 									<div class="top-bar-icon">
 										<i class="flaticon-calendar"></i>
 									</div>
 									<div class="top-bar-text">
-										<h3>Working Hours</h3>
-										<p>Mon - Sat : 08:00 - 19:00</p>
+										<h3><?php echo esc_html(get_field('working_hours_title', $header_page_id)); ?></h3>
+										<?php echo wp_kses_post(get_field('working_hours_text', $header_page_id)); ?>
 									</div>
 								</div>
 							</div>
+
+							<!-- Phone -->
 							<div class="col-4">
 								<div class="top-bar-item">
 									<div class="top-bar-icon">
 										<i class="flaticon-call"></i>
 									</div>
 									<div class="top-bar-text">
-										<h3>Call Us</h3>
-										<p>+91 78921 00691</p>
+										<h3><?php echo esc_html(get_field('phone_title', $header_page_id)); ?></h3>
+										<p><?php echo wp_kses_post(get_field('phone_number', $header_page_id)); ?></p>
 									</div>
 								</div>
 							</div>
+
+							<!-- Email -->
 							<div class="col-4">
 								<div class="top-bar-item">
 									<div class="top-bar-icon">
 										<i class="flaticon-send-mail"></i>
 									</div>
 									<div class="top-bar-text">
-										<h3>Email Us</h3>
-										<p>info@mahaconstruction.com</p>
+										<h3><?php echo esc_html(get_field('email_title', $header_page_id)); ?></h3>
+										<p><?php echo wp_kses_post(get_field('email_address', $header_page_id)); ?></p>
 									</div>
 								</div>
 							</div>
@@ -136,7 +146,16 @@
 						?>
 
 					</div>
-					<a href="<?php echo site_url('/quote'); ?>" class="btn btn-primary px-3 d-none d-lg-block">Get A Quote</a>
+					<?php
+					$quote_link = get_field('quote_button_link', $header_page_id);
+					$quote_text = get_field('quote_button_text', $header_page_id);
+					if ($quote_link && $quote_text):
+						$link_url = is_array($quote_link) ? $quote_link['url'] : $quote_link;
+						$link_target = is_array($quote_link) ? $quote_link['target'] : '';
+					?>
+						<a href="<?php echo esc_url($link_url); ?>" class="btn btn-primary px-3 d-none d-lg-block"
+							<?php echo $link_target ? 'target="' . esc_attr($link_target) . '"' : ''; ?>><?php echo esc_html($quote_text); ?></a>
+					<?php endif; ?>
 				</nav>
 
 				<!-- Full Screen Search End -->

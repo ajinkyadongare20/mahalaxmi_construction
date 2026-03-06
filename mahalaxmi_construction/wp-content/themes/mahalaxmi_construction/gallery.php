@@ -16,15 +16,32 @@
 get_header();
 ?>
 
+<!-- Page Header -->
 <div class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h2>Our Gallery</h2>
+				<h2><?php echo esc_html(get_field('banner_page_tittle')); ?></h2>
 			</div>
 			<div class="col-12">
-				<a href="">Home</a>
-				<a href="">Gallery</a>
+				<?php
+				$home_link = get_field('banner_page_home_link');
+				if ($home_link) :
+					$home_url = is_array($home_link) ? $home_link['url'] : $home_link;
+				?>
+					<a href="<?php echo esc_url($home_url); ?>">
+						<?php echo esc_html(get_field('banner_page_home_text')); ?>
+					</a>
+				<?php endif; ?>
+				<?php
+				$page_link = get_field('banner_page_name_link');
+				if ($page_link) :
+					$page_url = is_array($page_link) ? $page_link['url'] : $page_link;
+				?>
+					<a href="<?php echo esc_url($page_url); ?>">
+						<?php echo esc_html(get_field('banner_page_name')); ?>
+					</a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
