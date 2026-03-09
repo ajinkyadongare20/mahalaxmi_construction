@@ -55,88 +55,52 @@ get_header();
 		<!-- Header -->
 		<div class="row text-center mb-lg-5 mb-0 ">
 			<div class="section-header text-center">
-				<p class="text-uppercase">Our Services</p>
-				<h2 class="fw-bold" style="margin: 10px;">Our Construction & Waterproofing Services</h2>
+				<p class="text-uppercase"><?php echo esc_html(get_field('services_section_header')); ?></p>
+				<h2 class="fw-bold" style="margin: 10px;"><?php echo esc_html(get_field('services_small_title')); ?></h2>
 				<span class="text-muted" style="margin: 10px !important;">
-					We provide professional waterproofing and construction services across Pune, including terrace waterproofing, bathroom waterproofing, plaster work, compound wall construction, basement protection, and home renovation solutions designed for durability and long-lasting structural safety.
+					<?php echo wp_kses_post(get_field('services_small_title_description')); ?>
 				</span>
 			</div>
 		</div>
 
-		<!-- Services Grid -->
 		<div class="row g-4">
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Terrace Waterproofing</h5>
-				</div>
-			</div>
+			<?php
+			$args = array(
+				'post_type' => 'services_speciality',
+				'posts_per_page' => -1,
+				'orderby'        => 'date',
+				'order'          => 'ASC'
+			);
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Terrace Waterproofing</h5>
-				</div>
-			</div>
+			$query = new WP_Query($args);
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Bathroom Waterproofing</h5>
-				</div>
-			</div>
+			if ($query->have_posts()) :
+				while ($query->have_posts()) : $query->the_post();
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Water Tank Waterproofing</h5>
-				</div>
-			</div>
+					$icon = get_field('services_speciality_icon');
+					$name = get_field('services_speciality_name');
+			?>
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">RCC Wall Waterproofing</h5>
-				</div>
-			</div>
+					<div class="col-12 col-md-4 col-lg-3">
+						<div class="service-card text-center">
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Internal & External Plaster</h5>
-				</div>
-			</div>
+							<div class="service-feature-icon">
+								<i class="<?php echo esc_attr($icon); ?>"></i>
+							</div>
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<h5 class="mt-3">Compound Wall Construction</h5>
-				</div>
-			</div>
+							<h5 class="mt-3">
+								<?php echo esc_html($name); ?>
+							</h5>
 
-			<div class="col-12 col-md-4 col-lg-3">
-				<div class="service-card text-center">
-					<div class="service-feature-icon">
-						<i class="flaticon-building"></i>
+						</div>
 					</div>
-					<h5 class="mt-3">Basement Waterproofing</h5>
-				</div>
-			</div>
+
+			<?php
+				endwhile;
+				wp_reset_postdata();
+			endif;
+			?>
 
 		</div>
 	</div>
@@ -144,35 +108,33 @@ get_header();
 <!-- Services End -->
 
 
-<!-- About Services Section -->
+<!--Services About Section -->
 <div class="services-highlight py-5">
-
 	<div class="container text-center text-white">
-		<h3 class="fw-bold text-white mb-3" style="font-weight: 700;">Reliable Waterproofing & Construction Experts</h3>
-
+		<h3 class="fw-bold text-white mb-3">
+			<?php echo esc_html(get_field('services_about_title')); ?>
+		</h3>
 		<p class="mb-0">
-			Mahalaxmi Construction provides professional waterproofing and construction services
-			for residential and commercial properties in Pune. Our team specializes in terrace
-			waterproofing, bathroom waterproofing, water tank protection, plaster work,
-			compound wall construction, basement waterproofing and home renovation.
-			We use trusted chemical coatings like Dr Fixit and Smart Care to ensure
-			long-lasting protection and durability.
+			<?php echo wp_kses_post(get_field('services_about_description')); ?>
 		</p>
 	</div>
 
 	<div class="container text-center text-white py-5">
-
-		<h2 class="fw-bold mb-3 text-white">Need Waterproofing or Construction Work?</h2>
-
+		<h2 class="fw-bold mb-3 text-white">
+			<?php echo esc_html(get_field('services_cta_title')); ?>
+		</h2>
 		<p class="mb-4">
-			Get in touch with Mahalaxmi Construction for reliable waterproofing,
-			plaster work, compound wall construction, or home renovation services in Pune.
-			Our team is ready to inspect your site and provide the best solution.
+			<?php echo wp_kses_post(get_field('services_cta_description')); ?>
 		</p>
 
-		<a href="<?php echo site_url('/contact'); ?>" class="btn btn-light text-primary fw-bold px-4 py-2">
-			Contact Us
-		</a>
+		<?php
+		$cta_link = get_field('services_cta_button_link');
+		if ($cta_link && ! empty($cta_link['url'])) :
+		?>
+			<a href="<?php echo esc_url($cta_link['url']); ?>" class="btn btn-light text-primary fw-bold px-4 py-2">
+				<?php echo esc_html(get_field('services_cta_button_text')); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 </div>
 
@@ -181,7 +143,7 @@ get_header();
 <div class="container py-5">
 	<div class="row align-items-center">
 		<div class="col-md-6 mb-4">
-			<img src="<?php bloginfo('template_directory'); ?>/img/gallery/21.jpeg"
+			<img src="<?php bloginfo('template_directory'); ?>/img/gallery/18.jpeg"
 				class="img-fluid rounded shadow" style="width: 100%; object-fit: scale-down;"
 				alt="Mahalaxmi Construction Work">
 		</div>
@@ -206,7 +168,7 @@ get_header();
 
 				<p class="fs-5">
 					<span class="fa fa-check me-2"></span>
-					Internal, External, Chanla, Taar & Daba Plaster
+					Internal, External, Sanla, Taar & Daba Plaster
 				</p>
 
 				<p class="fs-5">
@@ -270,7 +232,7 @@ get_header();
 				</li>
 
 				<li>
-					<span class="custom-bullet">➤</span> Internal, External, Chanla, Taar & Daba Plaster Work
+					<span class="custom-bullet">➤</span> Internal, External, Sanla, Taar & Daba Plaster Work
 				</li>
 
 				<li>

@@ -14,6 +14,7 @@
  */
 
 get_header();
+$quote_page_id = 39;
 ?>
 
 <!-- Page Header -->
@@ -33,6 +34,7 @@ get_header();
 						<?php echo esc_html(get_field('banner_page_home_text')); ?>
 					</a>
 				<?php endif; ?>
+
 				<?php
 				$page_link = get_field('banner_page_name_link');
 				if ($page_link) :
@@ -47,7 +49,6 @@ get_header();
 	</div>
 </div>
 
-
 <!-- Projects Section Start -->
 <div class="container px-3 px-lg-0">
 	<div class="py-5">
@@ -57,169 +58,74 @@ get_header();
 		</div>
 
 		<div class="row g-4 g-lg-5 portfolio-container">
+			<?php
+			$projects_cpt = new WP_Query(array(
+				'post_type'      => 'projects_cpt',
+				'posts_per_page' => -1,
+				'orderby'        => 'date',
+				'order'          => 'ASC',
+			));
 
-			<!-- Project 1 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/21.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Terrace Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-water text-primary me-2"></i>
-							Complete terrace waterproofing project ensuring long-lasting protection against rainwater leakage.
-						</span>
-					</a>
-				</div>
-			</div>
+			if ($projects_cpt->have_posts()) :
+				while ($projects_cpt->have_posts()) :
+					$projects_cpt->the_post();
 
-			<!-- Project 2 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/22.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Bathroom Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-shower text-primary me-2"></i>
-							Professional waterproofing work preventing water seepage in bathroom walls and floors.
-						</span>
-					</a>
-				</div>
-			</div>
+					$projects_image        = get_field('projects_image');
+					$projects_heading_text = get_field('projects_heading_text');
+					$projects_icon         = get_field('projects_icon');
+					$projects_description  = get_field('projects_heading_description');
 
-			<!-- Project 3 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/23.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Water Tank Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-tint text-primary me-2"></i>
-							Specialized waterproofing solutions for residential and commercial water tanks.
-						</span>
-					</a>
-				</div>
-			</div>
+					// Normalize image URL
+					$projects_image_url = '';
+					if (is_array($projects_image) && isset($projects_image['url'])) {
+						$projects_image_url = $projects_image['url'];
+					} elseif (is_string($projects_image)) {
+						$projects_image_url = $projects_image;
+					} elseif (is_numeric($projects_image)) {
+						$projects_image_url = wp_get_attachment_url($projects_image);
+					}
+			?>
+					<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
+						<div class="position-relative portfolio-box">
 
-			<!-- Project 4 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/24.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">RCC Wall Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-building text-primary me-2"></i>
-							Advanced waterproofing work protecting RCC structures from moisture damage.
-						</span>
-					</a>
-				</div>
-			</div>
+							<?php if ($projects_image_url) : ?>
+								<img
+									class="img-fluid w-100"
+									src="<?php echo esc_url($projects_image_url); ?>"
+									style="height:700px; object-fit:cover;"
+									alt="<?php echo esc_attr($projects_heading_text); ?>">
+							<?php endif; ?>
 
-			<!-- Project 5 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/25.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Internal Plaster Work</h5>
-						<span class="text-body"><i class="fa fa-tools text-primary me-2"></i>
-							Quality internal plastering ensuring smooth wall finishing for residential homes.
-						</span>
-					</a>
-				</div>
-			</div>
+							<a class="portfolio-title shadow-sm" href="#">
+								<h5 class="mb-3" style="font-weight:700;">
+									<?php echo esc_html($projects_heading_text); ?>
+								</h5>
 
-			<!-- Project 6 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/26.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">External Plaster Work</h5>
-						<span class="text-body"><i class="fa fa-home text-primary me-2"></i>
-							Durable external plastering improving building strength and weather resistance.
-						</span>
-					</a>
-				</div>
-			</div>
+								<span class="text-body d-flex align-items-start">
+									<?php if ($projects_icon) : ?>
+										<i class="<?php echo esc_attr($projects_icon); ?> text-primary mr-2 mt-1"></i>
+									<?php endif; ?>
 
-			<!-- Project 7 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/27.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Compound Wall Construction</h5>
-						<span class="text-body"><i class="fa fa-border-all text-primary me-2"></i>
-							Strong compound wall construction providing safety and property boundaries.
-						</span>
-					</a>
-				</div>
-			</div>
+									<span>
+										<?php echo wp_kses_post($projects_description); ?>
+									</span>
+								</span>
+							</a>
 
-			<!-- Project 8 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/28.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Basement Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-layer-group text-primary me-2"></i>
-							Basement protection systems preventing underground water leakage.
-						</span>
-					</a>
-				</div>
-			</div>
-
-			<!-- Project 9 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/29.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Swimming Pool Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-swimmer text-primary me-2"></i>
-							Professional waterproofing ensuring leak-free swimming pool structures.
-						</span>
-					</a>
-				</div>
-			</div>
-
-			<!-- Project 10 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/30.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Balcony Waterproofing</h5>
-						<span class="text-body"><i class="fa fa-water text-primary me-2"></i>
-							Balcony brick bed and waterproofing work preventing leakage into lower floors.
-						</span>
-					</a>
-				</div>
-			</div>
-
-			<!-- Project 11 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/27.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Home Renovation</h5>
-						<span class="text-body"><i class="fa fa-hammer text-primary me-2"></i>
-							Complete home renovation projects improving structure and appearance.
-						</span>
-					</a>
-				</div>
-			</div>
-
-			<!-- Project 12 -->
-			<div class="col-xl-6 col-lg-6 col-md-6 portfolio-item business">
-				<div class="position-relative portfolio-box">
-					<img class="img-fluid w-100" src="<?php bloginfo('template_directory'); ?>/img/gallery/28.jpeg" style="height: 700px; object-fit: cover;">
-					<a class="portfolio-title shadow-sm" href="#">
-						<h5 class="mb-3" style="font-weight: 700;">Demolition & Structural Repairs</h5>
-						<span class="text-body"><i class="fa fa-hard-hat text-primary me-2"></i>
-							Demolition and structural repair work for renovation and rebuilding projects.
-						</span>
-					</a>
-				</div>
-			</div>
-
+						</div>
+					</div>
+			<?php
+				endwhile;
+				wp_reset_postdata();
+			else :
+				echo '<p>No Projects found.</p>';
+			endif;
+			?>
 		</div>
 
 	</div>
 </div>
 <!-- Projects Section End -->
-
 
 <!-- FAQs Start -->
 <div class="faqs">
@@ -240,7 +146,9 @@ get_header();
 						</div>
 						<div id="collapseOne" class="collapse" data-parent="#accordion-1">
 							<div class="card-body">
-								Terrace waterproofing protects your roof from water leakage, seepage and structural damage. It increases the life of your building and prevents cracks, dampness and ceiling leakage.
+								Terrace waterproofing protects your roof from water leakage,
+								seepage and structural damage. It increases the life of your
+								building and prevents cracks, dampness and ceiling leakage.
 							</div>
 						</div>
 					</div>
@@ -253,7 +161,9 @@ get_header();
 						</div>
 						<div id="collapseTwo" class="collapse" data-parent="#accordion-1">
 							<div class="card-body">
-								We use high-quality waterproofing materials like Dr. Fixit, SmartCare coatings and other branded chemicals depending on site condition and customer requirement.
+								We use high-quality waterproofing materials like Dr. Fixit,
+								SmartCare coatings and other branded chemicals depending on
+								site condition and customer requirement.
 							</div>
 						</div>
 					</div>
@@ -266,7 +176,9 @@ get_header();
 						</div>
 						<div id="collapseThree" class="collapse" data-parent="#accordion-1">
 							<div class="card-body">
-								Yes, we provide complete bathroom waterproofing and internal/external water tank waterproofing solutions to prevent leakage and dampness problems.
+								Yes, we provide complete bathroom waterproofing and
+								internal/external water tank waterproofing solutions to prevent
+								leakage and dampness problems.
 							</div>
 						</div>
 					</div>
@@ -279,7 +191,8 @@ get_header();
 						</div>
 						<div id="collapseFour" class="collapse" data-parent="#accordion-1">
 							<div class="card-body">
-								Yes, we construct brick compound walls, RCC compound walls and strong retaining walls with proper foundation and quality materials.
+								Yes, we construct brick compound walls, RCC compound walls and
+								strong retaining walls with proper foundation and quality materials.
 							</div>
 						</div>
 					</div>
@@ -292,7 +205,8 @@ get_header();
 						</div>
 						<div id="collapseFive" class="collapse" data-parent="#accordion-1">
 							<div class="card-body">
-								We provide internal plaster, external plaster, slab plaster, ceiling plaster and terrace plaster with smooth and durable finishing.
+								We provide internal plaster, external plaster, slab plaster,
+								ceiling plaster and terrace plaster with smooth and durable finishing.
 							</div>
 						</div>
 					</div>
@@ -311,7 +225,8 @@ get_header();
 						</div>
 						<div id="collapseSix" class="collapse" data-parent="#accordion-2">
 							<div class="card-body">
-								Yes, we specialize in basement waterproofing and basement retaining wall treatment to protect underground areas from water damage.
+								Yes, we specialize in basement waterproofing and basement retaining
+								wall treatment to protect underground areas from water damage.
 							</div>
 						</div>
 					</div>
@@ -324,7 +239,8 @@ get_header();
 						</div>
 						<div id="collapseSeven" class="collapse" data-parent="#accordion-2">
 							<div class="card-body">
-								Yes, we provide complete swimming pool waterproofing solutions to prevent leakage and ensure long-term durability.
+								Yes, we provide complete swimming pool waterproofing solutions to
+								prevent leakage and ensure long-term durability.
 							</div>
 						</div>
 					</div>
@@ -337,7 +253,8 @@ get_header();
 						</div>
 						<div id="collapseEight" class="collapse" data-parent="#accordion-2">
 							<div class="card-body">
-								Yes, we provide complete home renovation including plaster work, waterproofing, structural repairs and remodeling services.
+								Yes, we provide complete home renovation including plaster work,
+								waterproofing, structural repairs and remodeling services.
 							</div>
 						</div>
 					</div>
@@ -350,7 +267,8 @@ get_header();
 						</div>
 						<div id="collapseNine" class="collapse" data-parent="#accordion-2">
 							<div class="card-body">
-								Yes, we provide safe and professional demolition services for houses, old structures and renovation projects.
+								Yes, we provide safe and professional demolition services for
+								houses, old structures and renovation projects.
 							</div>
 						</div>
 					</div>
@@ -363,7 +281,8 @@ get_header();
 						</div>
 						<div id="collapseTen" class="collapse" data-parent="#accordion-2">
 							<div class="card-body">
-								You can contact us for a site visit and quotation. We provide reliable civil work and waterproofing services with quality assurance.
+								You can contact us for a site visit and quotation. We provide
+								reliable civil work and waterproofing services with quality assurance.
 							</div>
 						</div>
 					</div>
@@ -376,134 +295,61 @@ get_header();
 </div>
 <!-- FAQs End -->
 
-
 <!-- Quote Start -->
 <div class="container-fluid py-lg-5 py-0 wow fadeInUp" data-wow-delay="0.1s">
 	<div class="container py-5">
 		<div class="row g-5">
-
 			<div class="col-lg-7">
 				<div class="section-header text-start">
-					<p class="text-uppercase">Get a Free Estimate</p>
-					<h2>Planning Waterproofing or Construction Work? Get a Quote Today</h2>
+					<p class="text-uppercase">
+						<?php echo esc_html(get_field('quote_small_title', $quote_page_id)); ?>
+					</p>
+					<h2><?php echo esc_html(get_field('quote_heading', $quote_page_id)); ?></h2>
 				</div>
 
 				<div class="row gx-3">
 					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
 						<h5 class="mb-4 quote-subheading">
-							<i class="fa fa-reply m-2"></i>Quick Response within 24 hours
+							<i class="fa fa-reply m-2"></i>
+							<?php echo esc_html(get_field('quote_feature_1', $quote_page_id)); ?>
 						</h5>
 					</div>
-
 					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
 						<h5 class="mb-4 quote-subheading">
-							<i class="fa fa-tools m-2"></i>Professional Site Inspection
+							<i class="fa fa-tools m-2"></i>
+							<?php echo esc_html(get_field('quote_feature_2', $quote_page_id)); ?>
 						</h5>
 					</div>
 				</div>
 
-				<p class="mb-4">
-					Looking for reliable waterproofing or construction services? Mahalaxmi Construction offers
-					expert solutions including terrace waterproofing, bathroom waterproofing, water tank sealing,
-					plaster work, compound wall construction, basement waterproofing, and home renovation services.
-					Fill out the form to request a quote and our team will contact you shortly to discuss your project.
-				</p>
+				<?php echo wp_kses_post(get_field('quote_description', $quote_page_id)); ?>
 
 				<div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
-
 					<div class="quote-call-icon d-flex align-items-center justify-content-center rounded"
 						style="width: 60px; height: 60px;">
 						<i class="fa fa-phone-alt text-white"></i>
 					</div>
 
 					<div class="ps-4">
-						<h5 class="m-2 quote-subheading">Need immediate assistance?</h5>
-						<h4 class="m-2 fw-bold" style="font-size: 1.5rem; font-weight:bold;">
-							+91 7892100691
+						<h5 class="m-2 quote-subheading">
+							<?php echo esc_html(get_field('quote_assistance_text', $quote_page_id)); ?>
+						</h5>
+						<h4 class="m-2 fw-bold" style="font-size: 1.5rem; font-weight: bold;">
+							<?php echo esc_html(get_field('quote_phone_number', $quote_page_id)); ?>
 						</h4>
 					</div>
-
 				</div>
 			</div>
-
 
 			<div class="col-lg-5">
 				<div class="quote-form rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
-
-					<form>
-
-						<div class="row g-3">
-
-							<div class="col-12 my-2">
-								<input type="text" class="form-control border-0"
-									placeholder="Your Name *"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="text" class="form-control border-0"
-									placeholder="Project Location"
-									style="height: 55px;">
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="email" class="form-control border-0"
-									placeholder="Email Address *"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="tel" class="form-control border-0"
-									placeholder="Phone Number"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<select class="form-select border-0"
-									style="height: 55px; width: 100%;" required>
-
-									<option selected disabled>Select Service *</option>
-									<option value="terrace-waterproofing">Terrace Waterproofing</option>
-									<option value="bathroom-waterproofing">Bathroom Waterproofing</option>
-									<option value="water-tank">Water Tank Waterproofing</option>
-									<option value="basement-waterproofing">Basement Waterproofing</option>
-									<option value="plaster-work">Plaster Work</option>
-									<option value="compound-wall">Compound Wall Construction</option>
-									<option value="home-renovation">Home Renovation</option>
-									<option value="other">Other</option>
-
-								</select>
-							</div>
-
-							<div class="col-12 my-2">
-								<textarea class="form-control border-0"
-									rows="3"
-									placeholder="Describe your project requirements"></textarea>
-							</div>
-
-							<div class="col-12 my-2">
-								<button class="btn w-100 py-3" type="submit">
-									Request a Quote
-								</button>
-							</div>
-
-						</div>
-
-					</form>
-
+					<?php echo do_shortcode('[contact-form-7 id="c569c15" title="Contact form 2 - Quote"]'); ?>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 <!-- Quote End -->
-
-
-
-
-
-
 
 <?php
 // get_sidebar();

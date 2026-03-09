@@ -69,8 +69,8 @@ get_header();
 				<p>Mahalaxmi Construction is a trusted name in the construction and waterproofing industry, offering comprehensive solutions for residential and commercial projects. With years of hands‑on experience, we specialize in delivering high‑quality workmanship across a wide range of services.</p>
 				<p class="about-subheading">Our core expertise includes:</p>
 				<ul class="service-list">
-					<li><i class="fas fa-check-circle"></i> Plastering (Internal, External, Chanla, Taar, Daba)</li>
-					<li><i class="fas fa-check-circle"></i> Bhandhkam & Compound Walls (Dabar, Vita, RCC, Retaining Wall)</li>
+					<li><i class="fas fa-check-circle"></i> Plastering (Internal, External, Sanla, Taar, Daba)</li>
+					<li><i class="fas fa-check-circle"></i> Bhandhkam & Compound Walls (Dabar, Vita Bandhkam, RCC, Retaining Wall)</li>
 					<li><i class="fas fa-check-circle"></i> Home Renovation & Todphod (Demolition)</li>
 					<li><i class="fas fa-check-circle"></i> Waterproofing (Tarace, Bathroom, Water Tank, RCC Wall, Swimming Pool, Basement)</li>
 					<li><i class="fas fa-check-circle"></i> PCC Concrete & Chemical Coatings (Dr Fixit, Smart Care, Regzing, Scriding)</li>

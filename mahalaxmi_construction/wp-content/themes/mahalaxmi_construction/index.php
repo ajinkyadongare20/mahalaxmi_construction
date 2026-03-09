@@ -329,15 +329,15 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/2.jpeg" alt="Basement Waterproofing">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/2.jpeg" alt="Top Terrace Waterproofing">
 						<div class="service-overlay">
 							<p>
-								Complete basement and retaining wall waterproofing systems to protect structures from groundwater damage and long-term moisture issues.
+								Complete top terrace and retaining wall waterproofing systems to protect structures from groundwater damage and long-term moisture issues.
 							</p>
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Basement Waterproofing</h3>
+						<h3>Top Terrace Waterproofing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -347,7 +347,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/7.jpeg" alt="Bathroom Waterproofing">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/7.jpeg" alt="Pcc Concrete">
 						<div class="service-overlay">
 							<p>
 								Advanced bathroom and water tank waterproofing to stop leakage, damp walls, and tile damage using reliable and durable materials.
@@ -355,7 +355,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Bathroom & Tank Waterproofing</h3>
+						<h3>Pcc Concrete</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -365,7 +365,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/4.jpeg" alt="Compound Wall">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/4.jpeg" alt="Brick Bat Coba Waterproofing`">
 						<div class="service-overlay">
 							<p>
 								RCC compound wall, brick compound wall, and retaining wall construction with strong foundation and long-lasting structural support.
@@ -373,7 +373,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Compound & Retaining Wall</h3>
+						<h3>Brick Bat Coba Waterproofing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -383,7 +383,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/5.jpeg" alt="Plastering Work">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/5.jpeg" alt="Terrace Water Proofing">
 						<div class="service-overlay">
 							<p>
 								Internal and external plastering services including Chanla plaster, Taar plaster, and Daba plaster for smooth finishing and durability.
@@ -391,7 +391,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Plastering Services</h3>
+						<h3>Terrace Water Proofing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -401,7 +401,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/6.jpeg" alt="Home Renovation">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/6.jpeg" alt="PCC Concrete">
 						<div class="service-overlay">
 							<p>
 								Complete home renovation, repair (Todphod), RCC work, and structural improvement services with quality workmanship and timely delivery.
@@ -409,7 +409,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Home Renovation & Repair</h3>
+						<h3>PCC Concrete</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -419,7 +419,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/8.jpeg" alt="RCC Construction">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/8.jpeg" alt="Compound wall Plaster">
 						<div class="service-overlay">
 							<p>
 								Strong RCC construction services including slab work, columns, beams, and structural frameworks designed for durability and safety.
@@ -427,7 +427,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>RCC Construction</h3>
+						<h3>Compound wall Plaster</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -437,7 +437,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/9.jpeg" alt="Brick Work">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/26.jpeg" alt="Swimming Pool Water Proofing">
 						<div class="service-overlay">
 							<p>
 								Professional brickwork and block construction services for residential and commercial buildings ensuring strength and precise alignment.
@@ -445,7 +445,7 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Brickwork & Masonry</h3>
+						<h3>Swimming Pool Water Proofing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
@@ -455,7 +455,7 @@ $quote_page_id = 39;
 			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
 				<div class="service-item">
 					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/10.jpeg" alt="Painting Services">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/10.jpeg" alt="Compound Wall Bandkam Work">
 						<div class="service-overlay">
 							<p>
 								Interior and exterior painting services with high-quality paints, waterproof coatings, and professional finishing for long-lasting protection.
@@ -463,7 +463,61 @@ $quote_page_id = 39;
 						</div>
 					</div>
 					<div class="service-text">
-						<h3>Painting & Finishing</h3>
+						<h3>Compound Wall Bandkam Work</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 10 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/27.jpeg" alt="Bathroom Waterproffing">
+						<div class="service-overlay">
+							<p>
+								Strong RCC construction services including slab work, columns, beams, and structural frameworks designed for durability and safety.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>Bathroom Waterproffing</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 11 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/46.jpeg" alt="Bathroom Brick bat Waterproofing">
+						<div class="service-overlay">
+							<p>
+								Professional brickwork and block construction services for residential and commercial buildings ensuring strength and precise alignment.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>Bathroom Brick bat Waterproofing</h3>
+						<a class="btn" href="#">+</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service 12 -->
+			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+				<div class="service-item">
+					<div class="service-img">
+						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/62.jpeg" alt="Balcony Water Proofing">
+						<div class="service-overlay">
+							<p>
+								Interior and exterior painting services with high-quality paints, waterproof coatings, and professional finishing for long-lasting protection.
+							</p>
+						</div>
+					</div>
+					<div class="service-text">
+						<h3>Balcony Water Proofing</h3>
 						<a class="btn" href="#">+</a>
 					</div>
 				</div>
