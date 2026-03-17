@@ -14,6 +14,7 @@
  */
 
 get_header();
+$quote_page_id = 39;
 ?>
 
 <!-- Page Header -->
@@ -47,60 +48,83 @@ get_header();
 	</div>
 </div>
 
-<!-- Updated HTML for About Page -->
+<!-- About Page -->
 <div class="container-fluid about-page py-5">
 	<div class="row">
 		<div class="section-header text-center">
-			<p>About Us</p>
-			<h2 class="px-3">About Mahalaxmi Construction</h2>
+			<p><?php echo esc_html(get_field('about_section_small_title')); ?></p>
+			<h2 class="px-3"><?php echo esc_html(get_field('about_section_main_title')); ?></h2>
 		</div>
 	</div>
+
 	<div class="row g-4">
+
 		<!-- Overview Card -->
 		<div class="col-lg-6">
 			<div class="about-card overview-card h-100 animate-on-scroll">
+
 				<div class="fact d-flex align-items-center mb-4">
 					<div class="fact-icon">
 						<i class="flaticon-worker"></i>
 					</div>
-					<h3>Company Overview</h3>
+					<h3><?php echo esc_html(get_field('about_overview_title')); ?></h3>
 				</div>
 
-				<p>Mahalaxmi Construction is a trusted name in the construction and waterproofing industry, offering comprehensive solutions for residential and commercial projects. With years of hands‑on experience, we specialize in delivering high‑quality workmanship across a wide range of services.</p>
-				<p class="about-subheading">Our core expertise includes:</p>
+				<p><?php echo wp_kses_post(get_field('about_overview_description_1')); ?></p>
+
+				<p class="about-subheading">
+					<?php echo esc_html(get_field('about_overview_description_2')); ?>
+				</p>
+
 				<ul class="service-list">
-					<li><i class="fas fa-check-circle"></i> Plastering (Internal, External, Sanla, Taar, Daba)</li>
-					<li><i class="fas fa-check-circle"></i> Bhandhkam & Compound Walls (Dabar, Vita Bandhkam, RCC, Retaining Wall)</li>
-					<li><i class="fas fa-check-circle"></i> Home Renovation & Todphod (Demolition)</li>
-					<li><i class="fas fa-check-circle"></i> Waterproofing (Tarace, Bathroom, Water Tank, RCC Wall, Swimming Pool, Basement)</li>
-					<li><i class="fas fa-check-circle"></i> PCC Concrete & Chemical Coatings (Dr Fixit, Smart Care, Regzing, Scriding)</li>
-
+					<?php for ($i = 1; $i <= 5; $i++):
+						$field = get_field("about_service_list_$i");
+						if ($field): ?>
+							<li><i class="fas fa-check-circle"></i> <?php echo esc_html($field); ?></li>
+					<?php endif;
+					endfor; ?>
 				</ul>
+
+
 				<div class="tagline">
-					<i class="fas fa-quote-left"></i> Quality Construction, Lasting Solutions <i class="fas fa-quote-right"></i>
+					<i class="fas fa-quote-left"></i>
+					<?php echo esc_html(get_field('about_overview_tagline')); ?>
+					<i class="fas fa-quote-right"></i>
 				</div>
+
 			</div>
 		</div>
+
+
 		<!-- History Card -->
 		<div class="col-lg-6">
 			<div class="about-card history-card h-100 animate-on-scroll">
+
 				<div class="fact d-flex align-items-center mb-4">
 					<div class="fact-icon">
 						<i class="flaticon-building"></i>
 					</div>
-					<h3>Our Journey</h3>
+
+					<h3><?php echo esc_html(get_field('about_journey_title')); ?></h3>
 				</div>
 
-				<p>Mahalaxmi Construction was founded with a clear mission: to deliver excellence in every project we undertake. What began as a small team dedicated to waterproofing has grown into a full‑service construction firm trusted by numerous clients across the region.</p>
-				<p>Over the years we have successfully completed projects of all sizes – from precise waterproofing applications to complete home renovations. Our growth is built on a foundation of integrity, transparency, and an unwavering commitment to quality.</p>
+				<p><?php echo wp_kses_post(get_field('about_journey_description_1')); ?></p>
+
+				<p><?php echo wp_kses_post(get_field('about_journey_description_2')); ?></p>
+
 				<div class="founder-note">
-					<strong>Founder’s Vision:</strong> “To build a company that stands for craftsmanship, reliability, and complete customer satisfaction.”
+					<?php echo wp_kses_post(get_field('about_founder_vision')); ?>
 				</div>
+
 				<div class="tagline">
-					<i class="fas fa-quote-left"></i> Quality Construction, Lasting Solutions <i class="fas fa-quote-right"></i>
+					<i class="fas fa-quote-left"></i>
+					<?php echo esc_html(get_field('about_journey_tagline')); ?>
+					<i class="fas fa-quote-right"></i>
 				</div>
+
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -115,8 +139,8 @@ get_header();
 				<div class="h-100">
 
 					<div class="section-header text-start">
-						<p>About Mahalaxmi Construction</p>
-						<h2>Expert Waterproofing & Construction Services</h2>
+						<p><?php echo esc_html(get_field('about_small_title')); ?></p>
+						<h2><?php echo esc_html(get_field('about_main_title')); ?></h2>
 					</div>
 
 					<!-- Feature Icons -->
@@ -125,65 +149,43 @@ get_header();
 						<div class="col-md-6">
 							<div class="about-feature d-flex align-items-center">
 								<div class="about-feature-icon mb-lg-0 mb-3">
-									<i class="flaticon-building"></i>
+									<i class="<?php echo esc_html(get_field('about_feature_1_icon')); ?>"></i>
 								</div>
-								<h4 class="mb-0">Waterproofing Solutions</h4>
+								<h4 class="mb-0"><?php echo esc_html(get_field('about_feature_1_title')); ?></h4>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="about-feature d-flex align-items-center">
 								<div class="about-feature-icon">
-									<i class="flaticon-building"></i>
+									<i class="<?php echo esc_html(get_field('about_feature_2_icon')); ?>"></i>
 								</div>
-								<h4 class="mb-0">Construction & Plaster Work</h4>
+								<h4 class="mb-0"><?php echo esc_html(get_field('about_feature_2_title')); ?></h4>
 							</div>
 						</div>
 
 					</div>
 
-					<p class="mb-4">
-						Mahalaxmi Construction provides reliable waterproofing, plastering, and construction services for residential and commercial properties.
-						With years of practical experience, we ensure durable solutions that protect buildings from water damage and structural issues.
-					</p>
+					<?php echo wp_kses_post(get_field('about_mahalaxmi_construction_description')); ?>
 
 					<div class="text-dark mb-4">
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							Terrace, Bathroom, Water Tank & RCC Wall Waterproofing
-						</p>
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							Internal, External, Chanla, Taar & Daba Plaster
-						</p>
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							Compound Wall, Bhandhkam & Retaining Wall Construction
-						</p>
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							PCC Concrete, Dr Fixit & Smart Care Chemical Coating
-						</p>
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							Swimming Pool, Basement & Balcony Waterproofing
-						</p>
-
-						<p class="fs-5">
-							<span class="fa fa-check me-2"></span>
-							Home Renovation & Demolition (Todphod) Services
-						</p>
-
+						<?php for ($i = 1; $i <= 6; $i++):
+							$point = get_field("about_mahalaxmi_construction_service_point_$i");
+							if ($point): ?>
+								<p><span>✔</span> <?php echo esc_html($point); ?></p>
+						<?php endif;
+						endfor; ?>
 					</div>
 
-					<a class="btn btn-contact py-3 px-4 px-md-5 ms-2" href="<?php echo site_url('/contact'); ?>">
-						Contact Mahalaxmi Construction
-					</a>
+					<?php
+					$about_contact_button_link = get_field('about_contact_button_link');
+					$about_contact_button_text = get_field('about_contact_button_text');
+					?>
+					<?php if ($about_contact_button_link && $about_contact_button_text): ?>
+						<a class="btn btn-contact py-3 px-4 px-md-5 ms-2" href="<?php echo esc_url($about_contact_button_link); ?>">
+							<?php echo esc_html($about_contact_button_text); ?>
+						</a>
+					<?php endif; ?>
 
 				</div>
 			</div>
@@ -202,8 +204,12 @@ get_header();
 							style="width: 50%; left: 0; bottom: 0;">
 
 							<div class="about-years-exp p-4">
-								<h4 class="mb-0" style="font-size: 4.5rem;">10+</h4>
-								<p class="text-white fs-5 mb-0" style="font-size: 1.25rem;">Years Experience</p>
+								<h4 class="mb-0" style="font-size: 4.5rem;">
+									<?php echo esc_html(get_field('about_years_experience_number')); ?>
+								</h4>
+								<p class="text-white fs-5 mb-0" style="font-size: 1.25rem;">
+									<?php echo esc_html(get_field('about_years_experience_text')); ?>
+								</p>
 							</div>
 
 						</div>
@@ -233,65 +239,58 @@ get_header();
 	<div class="container py-5">
 
 		<div class="section-header text-center">
-			<p>Who We Are</p>
-			<h2>Our Mission, Vision & Core Values</h2>
+			<p><?php echo esc_html(get_field('mvc_heading')); ?></p>
+			<h2><?php echo esc_html(get_field('mvc_subheading')); ?></h2>
 		</div>
 
 		<div class="row g-4 py-3">
 
-			<!-- Mission -->
-			<div class="col-lg-4">
-				<div class="bg-light h-100 p-4 shadow-sm border-top border-5 border-primary rounded">
+			<?php
+			$args = array(
+				'post_type'      => 'about_mvc_values',
+				'posts_per_page' => -1,
+				'order'          => 'ASC'
+			);
 
-					<h4 class="mb-3 text-primary">Our Mission</h4>
+			$query = new WP_Query($args);
 
-					<p class="text-muted mb-0">
-						At Mahalaxmi Construction, our mission is to provide reliable and long-lasting construction
-						and waterproofing solutions that protect buildings from damage and ensure structural durability.
-						We focus on quality workmanship, proper materials, and professional execution for every project.
-						Whether it is terrace waterproofing, bathroom sealing, compound wall construction, plaster work,
-						or home renovation, we strive to deliver dependable results that bring value and satisfaction
-						to every client.
-					</p>
+			if ($query->have_posts()) :
+				$count = 1;
+				while ($query->have_posts()) : $query->the_post();
 
-				</div>
-			</div>
+					$heading = get_field('about_mvc_heading');
+					$description = get_field('about_mvc_description');
 
-			<!-- Vision -->
-			<div class="col-lg-4">
-				<div class="bg-light h-100 p-4 shadow-sm border-top border-5 border-success rounded">
+					// Dynamic class based on position
+					if ($count == 2) {
+						$border_class = 'border-success';
+						$text_class   = 'text-success';
+					} else {
+						$border_class = 'border-primary';
+						$text_class   = 'text-primary';
+					}
+			?>
 
-					<h4 class="mb-3 text-success">Our Vision</h4>
+					<div class="col-lg-4">
+						<div class="bg-light h-100 p-4 shadow-sm border-top border-5 <?php echo $border_class; ?> rounded">
 
-					<p class="text-muted mb-0">
-						Our vision is to become a trusted name in construction and waterproofing services,
-						recognized for quality work, honest service, and reliable solutions.
-						We aim to expand our expertise across residential and commercial projects while maintaining
-						high standards in waterproofing systems, plaster work, concrete construction, and renovation.
-						By continuously improving our techniques and using trusted chemical coatings like Dr Fixit
-						and Smart Care, we aim to create safer, stronger, and longer-lasting structures for our clients.
-					</p>
+							<h4 class="mb-3 <?php echo $text_class; ?>">
+								<?php echo esc_html($heading); ?>
+							</h4>
 
-				</div>
-			</div>
+							<p class="text-muted mb-0">
+								<?php echo wp_kses_post($description); ?>
+							</p>
 
-			<!-- Core Values -->
-			<div class="col-lg-4">
-				<div class="bg-light h-100 p-4 shadow-sm border-top border-5 border-primary rounded">
+						</div>
+					</div>
 
-					<h4 class="mb-3 text-primary">Core Values</h4>
-
-					<p class="text-muted mb-0">
-						Our Values is to become a trusted name in construction and waterproofing services,
-						recognized for quality work, honest service, and reliable solutions.
-						We aim to expand our expertise across residential and commercial projects while maintaining
-						high standards in waterproofing systems, plaster work, concrete construction, and renovation.
-						By continuously improving our techniques and using trusted chemical coatings like Dr Fixit
-						and Smart Care, we aim to create safer, stronger, and longer-lasting structures for our clients.
-					</p>
-
-				</div>
-			</div>
+			<?php
+					$count++;
+				endwhile;
+				wp_reset_postdata();
+			endif;
+			?>
 
 		</div>
 
@@ -460,128 +459,57 @@ get_header();
 <div class="container-fluid py-lg-5 py-0 wow fadeInUp" data-wow-delay="0.1s">
 	<div class="container py-5">
 		<div class="row g-5">
-
 			<div class="col-lg-7">
 				<div class="section-header text-start">
-					<p class="text-uppercase">Get a Free Estimate</p>
-					<h2>Planning Waterproofing or Construction Work? Get a Quote Today</h2>
+					<p class="text-uppercase">
+						<?php echo esc_html(get_field('quote_small_title', $quote_page_id)); ?>
+					</p>
+					<h2><?php echo esc_html(get_field('quote_heading', $quote_page_id)); ?></h2>
 				</div>
 
 				<div class="row gx-3">
 					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
 						<h5 class="mb-4 quote-subheading">
-							<i class="fa fa-reply m-2"></i>Quick Response within 24 hours
+							<i class="fa fa-reply m-2"></i>
+							<?php echo esc_html(get_field('quote_feature_1', $quote_page_id)); ?>
 						</h5>
 					</div>
-
 					<div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
 						<h5 class="mb-4 quote-subheading">
-							<i class="fa fa-tools m-2"></i>Professional Site Inspection
+							<i class="fa fa-tools m-2"></i>
+							<?php echo esc_html(get_field('quote_feature_2', $quote_page_id)); ?>
 						</h5>
 					</div>
 				</div>
 
-				<p class="mb-4">
-					Looking for reliable waterproofing or construction services? Mahalaxmi Construction offers
-					expert solutions including terrace waterproofing, bathroom waterproofing, water tank sealing,
-					plaster work, compound wall construction, basement waterproofing, and home renovation services.
-					Fill out the form to request a quote and our team will contact you shortly to discuss your project.
-				</p>
+				<?php echo wp_kses_post(get_field('quote_description', $quote_page_id)); ?>
 
 				<div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
-
 					<div class="quote-call-icon d-flex align-items-center justify-content-center rounded"
 						style="width: 60px; height: 60px;">
 						<i class="fa fa-phone-alt text-white"></i>
 					</div>
 
 					<div class="ps-4">
-						<h5 class="m-2 quote-subheading">Need immediate assistance?</h5>
-						<h4 class="m-2 fw-bold" style="font-size: 1.5rem; font-weight:bold;">
-							+91 7892100691
+						<h5 class="m-2 quote-subheading">
+							<?php echo esc_html(get_field('quote_assistance_text', $quote_page_id)); ?>
+						</h5>
+						<h4 class="m-2 fw-bold" style="font-size: 1.5rem; font-weight: bold;">
+							<?php echo esc_html(get_field('quote_phone_number', $quote_page_id)); ?>
 						</h4>
 					</div>
-
 				</div>
 			</div>
-
 
 			<div class="col-lg-5">
 				<div class="quote-form rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
-
-					<form>
-
-						<div class="row g-3">
-
-							<div class="col-12 my-2">
-								<input type="text" class="form-control border-0"
-									placeholder="Your Name *"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="text" class="form-control border-0"
-									placeholder="Project Location"
-									style="height: 55px;">
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="email" class="form-control border-0"
-									placeholder="Email Address *"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<input type="tel" class="form-control border-0"
-									placeholder="Phone Number"
-									style="height: 55px;" required>
-							</div>
-
-							<div class="col-12 my-2">
-								<select class="form-select border-0"
-									style="height: 55px; width: 100%;" required>
-
-									<option selected disabled>Select Service *</option>
-									<option value="terrace-waterproofing">Terrace Waterproofing</option>
-									<option value="bathroom-waterproofing">Bathroom Waterproofing</option>
-									<option value="water-tank">Water Tank Waterproofing</option>
-									<option value="basement-waterproofing">Basement Waterproofing</option>
-									<option value="plaster-work">Plaster Work</option>
-									<option value="compound-wall">Compound Wall Construction</option>
-									<option value="home-renovation">Home Renovation</option>
-									<option value="other">Other</option>
-
-								</select>
-							</div>
-
-							<div class="col-12 my-2">
-								<textarea class="form-control border-0"
-									rows="3"
-									placeholder="Describe your project requirements"></textarea>
-							</div>
-
-							<div class="col-12 my-2">
-								<button class="btn w-100 py-3" type="submit">
-									Request a Quote
-								</button>
-							</div>
-
-						</div>
-
-					</form>
-
+					<?php echo do_shortcode('[contact-form-7 id="c569c15" title="Contact form 2 - Quote"]'); ?>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 <!-- Quote End -->
-
-
-
-
-
 
 
 <?php

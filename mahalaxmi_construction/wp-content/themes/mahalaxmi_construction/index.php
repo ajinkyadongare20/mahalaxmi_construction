@@ -20,42 +20,73 @@ $quote_page_id = 39;
 <!-- Carousel Start -->
 <div id="carousel" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
-		<li data-target="#carousel" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel" data-slide-to="1"></li>
-		<li data-target="#carousel" data-slide-to="2"></li>
+		<?php
+		$indicator_query = new WP_Query(array(
+			'post_type'      => 'home_carousel_slider',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC'
+		));
+		$indicator_count = 0;
+		if ($indicator_query->have_posts()) :
+			while ($indicator_query->have_posts()) : $indicator_query->the_post();
+				$active_class = ($indicator_count == 0) ? 'active' : '';
+		?>
+				<li data-target="#carousel" data-slide-to="<?php echo $indicator_count; ?>" class="<?php echo $active_class; ?>"></li>
+			<?php
+				$indicator_count++;
+			endwhile;
+			wp_reset_postdata();
+		else :
+			// Fallback indicators
+			?>
+			<li data-target="#carousel" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel" data-slide-to="1"></li>
+			<li data-target="#carousel" data-slide-to="2"></li>
+		<?php endif; ?>
 	</ol>
 
 	<div class="carousel-inner">
 
-		<!-- Slide 1 -->
-		<div class="carousel-item active">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-1.jpg" alt="Mahalaxmi Construction">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Building • Waterproofing • Renovation</p>
-				<h1 class="animated fadeInLeft">Complete Construction & Waterproofing Solutions</h1>
-				<a class="btn animated fadeInUp" href="#contact">Get A Quote</a>
-			</div>
-		</div>
+		<?php
+		$home_carousel_slider = new WP_Query(array(
+			'post_type'      => 'home_carousel_slider',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC'
+		));
 
-		<!-- Slide 2 -->
-		<div class="carousel-item">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-2.jpg" alt="Terrace Waterproofing">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Leakage? Seepage? Damp Walls?</p>
-				<h1 class="animated fadeInLeft">Expert Terrace & Basement Waterproofing Services</h1>
-				<a class="btn animated fadeInUp" href="#services">Get A Quote</a>
-			</div>
-		</div>
+		$i = 0; // counter to set 'active' only for the first slide
+		if ($home_carousel_slider->have_posts()) :
+			while ($home_carousel_slider->have_posts()) : $home_carousel_slider->the_post();
+				$home_carousel_slider_image = get_field('home_carousel_slider_image');
+				$button_link         = get_field('home_carousel_slider_page_link');
+				$button_text         = get_field('home_carousel_slider_page_link_text');
+				$active_class = ($i === 0) ? 'active' : '';
+		?>
 
-		<!-- Slide 3 -->
-		<div class="carousel-item">
-			<img src="<?php bloginfo('template_directory'); ?>/img/carousel-3.jpg" alt="Home Renovation">
-			<div class="carousel-caption">
-				<p class="animated fadeInRight">Strong Foundation. Lasting Protection.</p>
-				<h1 class="animated fadeInLeft">Trusted Construction & Renovation Experts</h1>
-				<a class="btn animated fadeInUp" href="#contact">Get A Quote</a>
-			</div>
-		</div>
+				<div class="carousel-item <?php echo $active_class; ?>">
+					<?php if (!empty($home_carousel_slider_image)): ?>
+						<img src="<?php echo esc_url($home_carousel_slider_image['url']); ?>" alt="">
+					<?php endif; ?>
+					<div class="carousel-caption">
+						<p class="animated fadeInRight"><?php echo esc_html(get_field('home_carousel_slider_heading')); ?></p>
+						<h1 class="animated fadeInLeft"><?php echo esc_html(get_field('home_carousel_slider_heading_line')); ?></h1>
+
+						<?php if ($button_link && $button_text): ?>
+							<a class="btn animated fadeInUp" href="<?php echo esc_url($button_link['url']); ?>">
+								<?php echo esc_html($button_text); ?>
+							</a>
+						<?php endif; ?>
+					</div>
+				</div>
+
+			<?php
+				$i++;
+			endwhile;
+			wp_reset_postdata();
+			?>
+		<?php endif; ?>
 
 	</div>
 
@@ -77,44 +108,43 @@ $quote_page_id = 39;
 	<div class="container-fluid">
 		<div class="row align-items-center">
 
-			<!-- Feature 1 -->
-			<div class="col-lg-4 col-md-12">
-				<div class="feature-item">
-					<div class="feature-icon">
-						<i class="flaticon-worker"></i>
-					</div>
-					<div class="feature-text">
-						<h3>Skilled & Experienced Team</h3>
-						<p class="text-white">Our trained professionals deliver reliable construction and waterproofing solutions with precision, safety, and long-lasting results.</p>
-					</div>
-				</div>
-			</div>
+			<?php
+			$args = array(
+				'post_type' => 'home_features',
+				'posts_per_page' => 3,
+				'orderby'        => 'title',
+				'order'          => 'ASC'
+			);
 
-			<!-- Feature 2 -->
-			<div class="col-lg-4 col-md-12">
-				<div class="feature-item">
-					<div class="feature-icon">
-						<i class="flaticon-building"></i>
-					</div>
-					<div class="feature-text">
-						<h3>Waterproofing Advanced Solutions</h3>
-						<p>We use high-quality materials and modern techniques for terrace, basement, bathroom, and water tank waterproofing ensure complete protection.</p>
-					</div>
-				</div>
-			</div>
+			$query = new WP_Query($args);
 
-			<!-- Feature 3 -->
-			<div class="col-lg-4 col-md-12">
-				<div class="feature-item">
-					<div class="feature-icon">
-						<i class="flaticon-call"></i>
+			if ($query->have_posts()) :
+				while ($query->have_posts()) : $query->the_post();
+
+					$icon = get_field('home_features_icons');
+					$title = get_field('home_features_heading');
+					$desc = get_field('home_features_description');
+			?>
+
+					<div class="col-lg-4 col-md-12">
+						<div class="feature-item">
+							<div class="feature-icon">
+								<i class="<?php echo esc_attr($icon); ?>"></i>
+							</div>
+							<div class="feature-text">
+								<h3><?php echo esc_html($title); ?></h3>
+								<p class="text-white">
+									<?php echo wp_kses_post($desc); ?>
+								</p>
+							</div>
+						</div>
 					</div>
-					<div class="feature-text">
-						<h3>Free Site Inspection & Support</h3>
-						<p class="text-white">We provide free site visits, proper leakage diagnosis, and customer support to ensure the best solution for your property.</p>
-					</div>
-				</div>
-			</div>
+
+			<?php
+				endwhile;
+				wp_reset_postdata();
+			endif;
+			?>
 
 		</div>
 	</div>
@@ -122,25 +152,32 @@ $quote_page_id = 39;
 <!-- Feature End-->
 
 
-<!-- About Start -->
+<!-- Home About Start -->
 <div class="about wow fadeInUp" data-wow-delay="0.1s">
 	<div class="container py-lg-5 py-0">
 		<div class="row align-items-center">
-
 			<div class="col-lg-7 col-md-6">
 				<div class="section-header text-left">
-					<p class="text-uppercase">Welcome to Mahalaxmi Construction</p>
-					<h2>Your Trusted Construction & Waterproofing Partner</h2>
+					<p class="text-uppercase">
+						<?php echo esc_html(get_field('home_about_heading_tittle')); ?>
+					</p>
+					<h2>
+						<?php echo esc_html(get_field('home_about_subheading_tittle')); ?>
+					</h2>
 				</div>
 
 				<div class="about-text">
-					<p>Mahalaxmi Construction is a reliable name in building construction, waterproofing, plastering, and renovation services. We specialize in providing long-lasting solutions for terrace leakage, basement waterproofing, bathroom seepage, water tank protection, and RCC wall treatment.</p>
+					<?php echo wp_kses_post(get_field('home_about_description')); ?>
 
-					<p>With a skilled team and modern techniques, we ensure high-quality workmanship, durable materials, and complete customer satisfaction. From small home repairs to full-scale construction projects, we deliver strong foundations and long-term protection for your property.</p>
-
-					<p>We also provide compound wall construction, retaining wall solutions, PCC concrete works, brick bed coba waterproofing, and complete home renovation services. Our approach focuses on detailed site inspection.</p>
-
-					<a class="btn" href="#services">Explore Our Services</a>
+					<?php
+					$home_about_services_link       = get_field('home_about_services_link');
+					$home_about_services_link_text  = get_field('home_about_services_link_text');
+					?>
+					<?php if ($home_about_services_link && $home_about_services_link_text) : ?>
+						<a class="btn" href="<?php echo esc_url($home_about_services_link); ?>">
+							<?php echo esc_html($home_about_services_link_text); ?>
+						</a>
+					<?php endif; ?>
 				</div>
 			</div>
 
@@ -149,11 +186,10 @@ $quote_page_id = 39;
 					<img src="<?php bloginfo('template_directory'); ?>/img/gallery/25.jpeg" alt="Mahalaxmi Construction">
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
-<!-- About End -->
+<!-- Home About End -->
 
 
 <!-- Why Choose Us -->
@@ -163,39 +199,26 @@ $quote_page_id = 39;
 
 			<!-- Left Side Content -->
 			<div class="col-lg-6 align-self-center mb-md-5 pb-md-5 wow fadeIn" data-wow-delay="0.2s">
-				<h2 class="text-white mb-4">Why Choose<br> Mahalaxmi Construction</h2>
+
+				<h2 class="text-white mb-4">
+					<?php echo esc_html(get_field('home_why_choose_text_name')); ?>
+				</h2>
 
 				<p class="text-light mb-4">
-					Mahalaxmi Construction is a trusted name in waterproofing, plastering, and building construction services. We focus on delivering long-lasting protection, strong structures, and complete customer satisfaction with every project we undertake.
+					<?php echo wp_kses_post(get_field('home_why_choose_text_description')); ?>
 				</p>
 
-				<div class="d-flex align-items-center text-white mb-3">
-					<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
-						<i class="fa fa-check"></i>
+				<!-- Static List (ACF Fields) -->
+				<?php for ($i = 1; $i <= 4; $i++) : ?>
+					<div class="d-flex align-items-center text-white mb-3">
+						<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
+							<i class="fa fa-check"></i>
+						</div>
+						<span>
+							<?php echo esc_html(get_field("why_choose_services_list{$i}")); ?>
+						</span>
 					</div>
-					<span>Expert in Terrace, Basement Waterproofing</span>
-				</div>
-
-				<div class="d-flex align-items-center text-white mb-3">
-					<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
-						<i class="fa fa-check"></i>
-					</div>
-					<span>High-Quality Materials & Chemical Coatings</span>
-				</div>
-
-				<div class="d-flex align-items-center text-white mb-3">
-					<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
-						<i class="fa fa-check"></i>
-					</div>
-					<span>Free Site Inspection & Leakage Diagnosis</span>
-				</div>
-
-				<div class="d-flex align-items-center text-white mb-3">
-					<div class="btn-sm-square bg-white text-primary rounded-circle mr-3">
-						<i class="fa fa-check"></i>
-					</div>
-					<span>Complete Construction & Renovation Solutions</span>
-				</div>
+				<?php endfor; ?>
 
 				<!-- Counters -->
 				<div class="row g-4 pt-3">
@@ -244,50 +267,46 @@ $quote_page_id = 39;
 			<!-- Right Side Feature Cards -->
 			<div class="col-lg-6 pb-5">
 
-				<div class="d-flex flex-column align-items-start justify-content-center px-4 pt-4 mb-4 wow fadeIn"
-					data-wow-delay="0.3s" style="background-color: rgba(256, 256, 256, 0.1);">
-					<div class="d-flex align-items-center">
-						<div class="me-3 mb-3 d-flex align-items-center justify-content-center rounded-circle icon-circle">
-							<i class="fa fa-home fa-2x text-white"></i>
-						</div>
-						<div class="px-3">
-							<h4 class="text-white mb-3">Complete Waterproofing Solutions</h4>
-						</div>
-					</div>
-					<p class="text-white mb-4">
-						We provide reliable waterproofing for terraces, balconies, basements, water tanks, swimming pools, and RCC walls using proven methods and durable materials.
-					</p>
-				</div>
+				<?php
+				$why_choose_feature = new WP_Query(array(
+					'post_type' => 'why_choose_feature',
+					'posts_per_page' => -1,
+					'orderby'        => 'title',
+					'order'          => 'ASC'
+				));
 
-				<div class="d-flex flex-column align-items-start justify-content-center px-4 pt-4 mb-4"
-					data-wow-delay="0.4s" style="background-color: rgba(256, 256, 256, 0.1);">
-					<div class="d-flex align-items-center">
-						<div class="me-3 mb-3 d-flex align-items-center justify-content-center rounded-circle icon-circle">
-							<i class="fa fa-tools fa-2x text-white"></i>
-						</div>
-						<div class="px-3">
-							<h4 class="text-white mb-3">Strong Construction & Plastering</h4>
-						</div>
-					</div>
-					<p class="text-white mb-4">
-						From compound walls to retaining walls and internal-external plastering, we ensure structural strength and quality finishing.
-					</p>
-				</div>
+				$delay = 0.3;
 
-				<div class="d-flex flex-column align-items-start justify-content-center px-4 pt-4 mb-4"
-					data-wow-delay="0.5s" style="background-color: rgba(256, 256, 256, 0.1);">
-					<div class="d-flex align-items-center">
-						<div class="me-3 mb-3 d-flex align-items-center justify-content-center rounded-circle icon-circle">
-							<i class="fa fa-thumbs-up fa-2x text-white"></i>
+				if ($why_choose_feature->have_posts()) :
+					while ($why_choose_feature->have_posts()) : $why_choose_feature->the_post();
+				?>
+						<div class="d-flex flex-column align-items-start justify-content-center px-4 pt-4 mb-4 wow fadeIn"
+							data-wow-delay="<?php echo esc_attr($delay); ?>s"
+							style="background-color: rgba(256, 256, 256, 0.1);">
+
+							<div class="d-flex align-items-center">
+								<div class="me-3 mb-3 d-flex align-items-center justify-content-center rounded-circle icon-circle">
+									<i class="<?php echo esc_attr(get_field('why_choose_feature_icon')); ?> fa-2x text-white"></i>
+								</div>
+								<div class="px-3">
+									<h4 class="text-white mb-3">
+										<?php echo esc_html(get_field('why_choose_feature_text')); ?>
+									</h4>
+								</div>
+							</div>
+
+							<p class="text-white mb-4">
+								<?php echo wp_kses_post(get_field('why_choose_feature_text_description')); ?>
+							</p>
+
 						</div>
-						<div class="px-3">
-							<h4 class="text-white mb-3">Customer Satisfaction</h4>
-						</div>
-					</div>
-					<p class="text-white mb-4">
-						We believe in transparency, timely delivery, and long-term relationships built on trust and reliable service.
-					</p>
-				</div>
+
+				<?php
+						$delay += 0.1; // animation increment
+					endwhile;
+					wp_reset_postdata();
+				endif;
+				?>
 
 			</div>
 
@@ -297,236 +316,78 @@ $quote_page_id = 39;
 <!-- End Why Choose Us -->
 
 
-<!-- Service Start -->
+<!-- Main Service Start -->
 <div class="service">
 	<div class="container">
 		<div class="section-header text-center">
-			<p>Our Services</p>
-			<h2>Complete Construction & Waterproofing Solutions</h2>
+			<p><?php echo esc_html(get_field('home_main_services_heading')); ?></p>
+			<h2><?php echo esc_html(get_field('home_main_services_subheading')); ?></h2>
 		</div>
 
 		<div class="row">
 
-			<!-- Service 1 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/1.jpeg" alt="Terrace Waterproofing">
-						<div class="service-overlay">
-							<p>
-								Professional terrace and balcony waterproofing solutions to prevent leakage, cracks, and seepage using high-quality chemical coatings and brick bat coba treatment.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Terrace Waterproofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+			<?php
+			$args = array(
+				'post_type'      => 'home_main_services',
+				'posts_per_page' => -1,
+				'post_status'    => 'publish',
+				'orderby'        => 'title',
+				'order'          => 'ASC'
+			);
 
-			<!-- Service 2 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/2.jpeg" alt="Top Terrace Waterproofing">
-						<div class="service-overlay">
-							<p>
-								Complete top terrace and retaining wall waterproofing systems to protect structures from groundwater damage and long-term moisture issues.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Top Terrace Waterproofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+			$services_query = new WP_Query($args);
 
-			<!-- Service 3 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/7.jpeg" alt="Pcc Concrete">
-						<div class="service-overlay">
-							<p>
-								Advanced bathroom and water tank waterproofing to stop leakage, damp walls, and tile damage using reliable and durable materials.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Pcc Concrete</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+			if ($services_query->have_posts()) :
+				$delay = 0.1;
 
-			<!-- Service 4 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/4.jpeg" alt="Brick Bat Coba Waterproofing`">
-						<div class="service-overlay">
-							<p>
-								RCC compound wall, brick compound wall, and retaining wall construction with strong foundation and long-lasting structural support.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Brick Bat Coba Waterproofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+				while ($services_query->have_posts()) : $services_query->the_post();
 
-			<!-- Service 5 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/5.jpeg" alt="Terrace Water Proofing">
-						<div class="service-overlay">
-							<p>
-								Internal and external plastering services including Chanla plaster, Taar plaster, and Daba plaster for smooth finishing and durability.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Terrace Water Proofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+					// Get ACF Fields
+					$image       = get_field('home_main_services_image');
+					$heading     = get_field('home_main_services_heading');
+					$description = get_field('home_main_services_description');
 
-			<!-- Service 6 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/6.jpeg" alt="PCC Concrete">
-						<div class="service-overlay">
-							<p>
-								Complete home renovation, repair (Todphod), RCC work, and structural improvement services with quality workmanship and timely delivery.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>PCC Concrete</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+					// Image URL (since return format = array)
+					$image_url = !empty($image['url']) ? $image['url'] : '';
+			?>
 
-			<!-- Service 7 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/8.jpeg" alt="Compound wall Plaster">
-						<div class="service-overlay">
-							<p>
-								Strong RCC construction services including slab work, columns, beams, and structural frameworks designed for durability and safety.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Compound wall Plaster</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+					<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?php echo esc_attr($delay); ?>s">
+						<div class="service-item">
 
-			<!-- Service 8 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/26.jpeg" alt="Swimming Pool Water Proofing">
-						<div class="service-overlay">
-							<p>
-								Professional brickwork and block construction services for residential and commercial buildings ensuring strength and precise alignment.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Swimming Pool Water Proofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+							<div class="service-img">
+								<?php if ($image_url): ?>
+									<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($heading); ?>">
+								<?php endif; ?>
 
-			<!-- Service 9 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/10.jpeg" alt="Compound Wall Bandkam Work">
-						<div class="service-overlay">
-							<p>
-								Interior and exterior painting services with high-quality paints, waterproof coatings, and professional finishing for long-lasting protection.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Compound Wall Bandkam Work</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+								<div class="service-overlay">
+									<p>
+										<?php echo wp_trim_words(wp_strip_all_tags($description), 25); ?>
+									</p>
+								</div>
+							</div>
 
-			<!-- Service 10 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/27.jpeg" alt="Bathroom Waterproffing">
-						<div class="service-overlay">
-							<p>
-								Strong RCC construction services including slab work, columns, beams, and structural frameworks designed for durability and safety.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Bathroom Waterproffing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+							<div class="service-text">
+								<h3><?php echo esc_html($heading); ?></h3>
+								<a class="btn">+</a>
+							</div>
 
-			<!-- Service 11 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/46.jpeg" alt="Bathroom Brick bat Waterproofing">
-						<div class="service-overlay">
-							<p>
-								Professional brickwork and block construction services for residential and commercial buildings ensuring strength and precise alignment.
-							</p>
 						</div>
 					</div>
-					<div class="service-text">
-						<h3>Bathroom Brick bat Waterproofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
 
-			<!-- Service 12 -->
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
-				<div class="service-item">
-					<div class="service-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/gallery/62.jpeg" alt="Balcony Water Proofing">
-						<div class="service-overlay">
-							<p>
-								Interior and exterior painting services with high-quality paints, waterproof coatings, and professional finishing for long-lasting protection.
-							</p>
-						</div>
-					</div>
-					<div class="service-text">
-						<h3>Balcony Water Proofing</h3>
-						<a class="btn" href="#">+</a>
-					</div>
-				</div>
-			</div>
+			<?php
+					$delay += 0.2; // animation delay increment
+				endwhile;
+
+				wp_reset_postdata();
+			else :
+				echo '<p>No services found</p>';
+			endif;
+			?>
 
 		</div>
 	</div>
 </div>
-<!-- Service End -->
+<!-- Main Service End -->
 
 
 <!-- Video Start -->
@@ -560,79 +421,68 @@ $quote_page_id = 39;
 <div class="team">
 	<div class="container">
 		<div class="section-header text-center">
-			<p>Our Team</p>
-			<h2>Meet Our Experts</h2>
+			<p><?php echo esc_html(get_field('home_team_heading')); ?></p>
+			<h2><?php echo esc_html(get_field('home_team_subheading')); ?></h2>
 		</div>
 		<div class="row">
 
-			<!-- Owner -->
-			<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-				<div class="team-item">
-					<div class="team-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/team-1.jpg" alt="Vishnu Chavan - Owner">
-					</div>
-					<div class="team-text">
-						<h2>Vishnu Chavan</h2>
-						<p>Founder & <br>Civil Contractor</p>
-					</div>
-					<div class="team-social">
-						<a class="social-fb" href="#"><i class="fab fa-facebook-f"></i></a>
-						<a class="social-li" href="#"><i class="fab fa-linkedin-in"></i></a>
-						<a class="social-in" href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
+			<?php
+			$args = array(
+				'post_type'      => 'team_cpt',
+				'posts_per_page' => -1,
+				'post_status'    => 'publish',
+				'orderby'        => 'title',
+				'order'          => 'ASC'
+			);
 
-			<!-- Site Engineer -->
-			<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-				<div class="team-item">
-					<div class="team-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/team-2.jpg" alt="Site Engineer">
-					</div>
-					<div class="team-text">
-						<h2>Ajinkya D</h2>
-						<p>Construction & RCC Specialist</p>
-					</div>
-					<div class="team-social">
-						<a class="social-fb" href="#"><i class="fab fa-facebook-f"></i></a>
-						<a class="social-li" href="#"><i class="fab fa-linkedin-in"></i></a>
-					</div>
-				</div>
-			</div>
+			$team_query = new WP_Query($args);
 
-			<!-- Waterproofing Expert -->
-			<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-				<div class="team-item">
-					<div class="team-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/team-3.jpg" alt="Waterproofing Expert">
-					</div>
-					<div class="team-text">
-						<h2>Sachin S</h2>
-						<p>Terrace & Basement Specialist</p>
-					</div>
-					<div class="team-social">
-						<a class="social-fb" href="#"><i class="fab fa-facebook-f"></i></a>
-						<a class="social-li" href="#"><i class="fab fa-linkedin-in"></i></a>
-					</div>
-				</div>
-			</div>
+			if ($team_query->have_posts()) :
+				$delay = 0.1;
 
-			<!-- Renovation Supervisor -->
-			<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-				<div class="team-item">
-					<div class="team-img">
-						<img src="<?php bloginfo('template_directory'); ?>/img/team-4.jpg" alt="Renovation Supervisor">
+				while ($team_query->have_posts()) : $team_query->the_post();
+
+					// ACF Fields
+					$image = get_field('team_member_image');
+					$name  = get_field('team_member_name');
+					$role  = get_field('team_member_role');
+
+					// Image URL (array format)
+					$image_url = !empty($image['url']) ? $image['url'] : '';
+			?>
+
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="<?php echo esc_attr($delay); ?>s">
+						<div class="team-item">
+
+							<div class="team-img">
+								<?php if ($image_url): ?>
+									<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($name); ?>">
+								<?php endif; ?>
+							</div>
+
+							<div class="team-text">
+								<h2><?php echo esc_html($name); ?></h2>
+								<p><?php echo wp_kses_post($role); ?></p>
+							</div>
+
+							<div class="team-social">
+								<a class="social-fb" href="#"><i class="fab fa-facebook-f"></i></a>
+								<a class="social-li" href="#"><i class="fab fa-linkedin-in"></i></a>
+								<a class="social-in" href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+
+						</div>
 					</div>
-					<div class="team-text">
-						<h2>Gaurav B</h2>
-						<p>Home Renovation & Demolition</p>
-					</div>
-					<div class="team-social">
-						<a class="social-fb" href="#"><i class="fab fa-facebook-f"></i></a>
-						<a class="social-li" href="#"><i class="fab fa-linkedin-in"></i></a>
-					</div>
-				</div>
-			</div>
+
+			<?php
+					$delay += 0.2;
+				endwhile;
+
+				wp_reset_postdata();
+			else :
+				echo '<p>No team members found</p>';
+			endif;
+			?>
 
 		</div>
 	</div>
@@ -643,229 +493,177 @@ $quote_page_id = 39;
 <!-- Testimonial Start -->
 <div class="testimonial wow fadeIn" data-wow-delay="0.1s">
 	<div class="container">
+
+		<?php
+		$args = array(
+			'post_type'      => 'testimonials_cpt',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => 'title',
+			'order'          => 'ASC'
+		);
+
+		$testimonial_query = new WP_Query($args);
+		?>
+
+		<!-- NAV IMAGES -->
 		<div class="row">
 			<div class="col-12">
 				<div class="testimonial-slider-nav">
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-1.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-2.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-3.jpg" alt="Client Review"></div>
-					<div class="slider-nav"><img src="<?php bloginfo('template_directory'); ?>/img/testimonial-4.jpg" alt="Client Review"></div>
+
+					<?php if ($testimonial_query->have_posts()) : ?>
+						<?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post();
+
+							$image = get_field('testimonials_cpt_image');
+							$image_url = !empty($image['url']) ? $image['url'] : '';
+						?>
+
+							<div class="slider-nav">
+								<?php if ($image_url): ?>
+									<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_field('testimonials_name')); ?>">
+								<?php endif; ?>
+							</div>
+
+						<?php endwhile; ?>
+					<?php endif; ?>
+
 				</div>
 			</div>
 		</div>
 
+		<?php wp_reset_postdata(); ?>
+
+		<!-- SLIDER CONTENT -->
 		<div class="row">
 			<div class="col-12">
 				<div class="testimonial-slider">
 
-					<div class="slider-item">
-						<h3>Rahul Patil</h3>
-						<h4>Home Owner</h4>
-						<p>
-							Mahalaxmi Construction did excellent terrace waterproofing work at my home. Leakage problem is completely solved. Quality work and proper finishing. Highly recommended.
-						</p>
-					</div>
+					<?php
+					$testimonial_query = new WP_Query($args);
 
-					<div class="slider-item">
-						<h3>Sneha Kulkarni</h3>
-						<h4>Apartment Owner</h4>
-						<p>
-							Very professional team. They completed bathroom waterproofing and internal plaster work on time. Clean work and reasonable pricing.
-						</p>
-					</div>
+					if ($testimonial_query->have_posts()) :
+						while ($testimonial_query->have_posts()) : $testimonial_query->the_post();
 
-					<div class="slider-item">
-						<h3>Amit Jadhav</h3>
-						<h4>Property Developer</h4>
-						<p>
-							We hired them for RCC compound wall and retaining wall construction. Strong foundation work and proper supervision by owner Vishnu Chavan. Satisfied with the service.
-						</p>
-					</div>
+							$name = get_field('testimonials_name');
+							$role = get_field('testimonials_role');
+							$desc = get_field('testimonials_description');
+					?>
 
-					<div class="slider-item">
-						<h3>Priya Deshmukh</h3>
-						<h4>Residential Client</h4>
-						<p>
-							Basement waterproofing work was done perfectly. Earlier we had heavy seepage issues, now completely fixed. Reliable and skilled team.
-						</p>
-					</div>
+							<div class="slider-item">
+								<h3><?php echo esc_html($name); ?></h3>
+								<h4><?php echo esc_html($role); ?></h4>
+								<p><?php echo wp_kses_post($desc); ?></p>
+							</div>
 
-					<div class="slider-item">
-						<h3>Sachin More</h3>
-						<h4>Villa Owner</h4>
-						<p>
-							They completed swimming pool waterproofing and terrace brick bat coba work with great quality. Good finishing and honest service.
-						</p>
-					</div>
-
-					<div class="slider-item">
-						<h3>Neha Shinde</h3>
-						<h4>Home Renovation Client</h4>
-						<p>
-							Home renovation and demolition (Todphod) work was done safely and professionally. Team handled everything smoothly from start to finish.
-						</p>
-					</div>
+					<?php
+						endwhile;
+						wp_reset_postdata();
+					else :
+						echo '<p>No testimonials found</p>';
+					endif;
+					?>
 
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 <!-- Testimonial End -->
 
 
-
 <!-- FAQs Start -->
 <div class="faqs">
 	<div class="container">
+
 		<div class="section-header text-center">
-			<p class="text-uppercase">Frequently Asked Questions</p>
-			<h2>Common Questions About Our Services</h2>
+			<p class="text-uppercase"><?php echo esc_html(get_field('faqs_heading')); ?></p>
+			<h2><?php echo esc_html(get_field('faqs_subheading')); ?></h2>
 		</div>
+
+		<?php
+		$args = array(
+			'post_type'      => 'faqs_cpt',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => 'title',
+			'order'          => 'ASC'
+		);
+
+		$faq_query = new WP_Query($args);
+
+		$faqs = [];
+
+		if ($faq_query->have_posts()) :
+			while ($faq_query->have_posts()) : $faq_query->the_post();
+
+				$faqs[] = [
+					'question' => get_field('faq_question'),
+					'answer'   => get_field('faq_answer')
+				];
+
+			endwhile;
+			wp_reset_postdata();
+		endif;
+
+		$total = count($faqs);
+		$half  = ceil($total / 2);
+		?>
+
 		<div class="row">
+
+			<!-- LEFT COLUMN -->
 			<div class="col-md-6">
 				<div id="accordion-1">
 
-					<div class="card wow fadeInLeft" data-wow-delay="0.1s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseOne">
-								What is terrace waterproofing and why is it important?
-							</a>
-						</div>
-						<div id="collapseOne" class="collapse" data-parent="#accordion-1">
-							<div class="card-body">
-								Terrace waterproofing protects your roof from water leakage, seepage and structural damage. It increases the life of your building and prevents cracks, dampness and ceiling leakage.
-							</div>
-						</div>
-					</div>
+					<?php for ($i = 0; $i < $half; $i++): ?>
+						<div class="card wow fadeInLeft" data-wow-delay="<?php echo ($i + 1) * 0.1; ?>s">
 
-					<div class="card wow fadeInLeft" data-wow-delay="0.2s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseTwo">
-								Which waterproofing chemical do you use?
-							</a>
-						</div>
-						<div id="collapseTwo" class="collapse" data-parent="#accordion-1">
-							<div class="card-body">
-								We use high-quality waterproofing materials like Dr. Fixit, SmartCare coatings and other branded chemicals depending on site condition and customer requirement.
+							<div class="card-header">
+								<a class="card-link collapsed" data-toggle="collapse" href="#faq-<?php echo $i; ?>">
+									<?php echo esc_html($faqs[$i]['question']); ?>
+								</a>
 							</div>
-						</div>
-					</div>
 
-					<div class="card wow fadeInLeft" data-wow-delay="0.3s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseThree">
-								Do you provide bathroom and water tank waterproofing?
-							</a>
-						</div>
-						<div id="collapseThree" class="collapse" data-parent="#accordion-1">
-							<div class="card-body">
-								Yes, we provide complete bathroom waterproofing and internal/external water tank waterproofing solutions to prevent leakage and dampness problems.
+							<div id="faq-<?php echo $i; ?>" class="collapse" data-parent="#accordion-1">
+								<div class="card-body">
+									<?php echo wp_kses_post($faqs[$i]['answer']); ?>
+								</div>
 							</div>
-						</div>
-					</div>
 
-					<div class="card wow fadeInLeft" data-wow-delay="0.4s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseFour">
-								Do you construct compound walls and retaining walls?
-							</a>
 						</div>
-						<div id="collapseFour" class="collapse" data-parent="#accordion-1">
-							<div class="card-body">
-								Yes, we construct brick compound walls, RCC compound walls and strong retaining walls with proper foundation and quality materials.
-							</div>
-						</div>
-					</div>
-
-					<div class="card wow fadeInLeft" data-wow-delay="0.5s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseFive">
-								Do you provide plastering services?
-							</a>
-						</div>
-						<div id="collapseFive" class="collapse" data-parent="#accordion-1">
-							<div class="card-body">
-								We provide internal plaster, external plaster, slab plaster, ceiling plaster and terrace plaster with smooth and durable finishing.
-							</div>
-						</div>
-					</div>
+					<?php endfor; ?>
 
 				</div>
 			</div>
 
+			<!-- RIGHT COLUMN -->
 			<div class="col-md-6">
 				<div id="accordion-2">
 
-					<div class="card wow fadeInRight" data-wow-delay="0.1s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseSix">
-								Do you handle basement waterproofing?
-							</a>
-						</div>
-						<div id="collapseSix" class="collapse" data-parent="#accordion-2">
-							<div class="card-body">
-								Yes, we specialize in basement waterproofing and basement retaining wall treatment to protect underground areas from water damage.
-							</div>
-						</div>
-					</div>
+					<?php for ($i = $half; $i < $total; $i++): ?>
+						<div class="card wow fadeInRight" data-wow-delay="<?php echo ($i + 1) * 0.1; ?>s">
 
-					<div class="card wow fadeInRight" data-wow-delay="0.2s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseSeven">
-								Do you provide swimming pool waterproofing?
-							</a>
-						</div>
-						<div id="collapseSeven" class="collapse" data-parent="#accordion-2">
-							<div class="card-body">
-								Yes, we provide complete swimming pool waterproofing solutions to prevent leakage and ensure long-term durability.
+							<div class="card-header">
+								<a class="card-link collapsed" data-toggle="collapse" href="#faq-<?php echo $i; ?>">
+									<?php echo esc_html($faqs[$i]['question']); ?>
+								</a>
 							</div>
-						</div>
-					</div>
 
-					<div class="card wow fadeInRight" data-wow-delay="0.3s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseEight">
-								Do you provide home renovation services?
-							</a>
-						</div>
-						<div id="collapseEight" class="collapse" data-parent="#accordion-2">
-							<div class="card-body">
-								Yes, we provide complete home renovation including plaster work, waterproofing, structural repairs and remodeling services.
+							<div id="faq-<?php echo $i; ?>" class="collapse" data-parent="#accordion-2">
+								<div class="card-body">
+									<?php echo wp_kses_post($faqs[$i]['answer']); ?>
+								</div>
 							</div>
-						</div>
-					</div>
 
-					<div class="card wow fadeInRight" data-wow-delay="0.4s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseNine">
-								Do you provide demolition (Todphod) services?
-							</a>
 						</div>
-						<div id="collapseNine" class="collapse" data-parent="#accordion-2">
-							<div class="card-body">
-								Yes, we provide safe and professional demolition services for houses, old structures and renovation projects.
-							</div>
-						</div>
-					</div>
-
-					<div class="card wow fadeInRight" data-wow-delay="0.5s">
-						<div class="card-header">
-							<a class="card-link collapsed" data-toggle="collapse" href="#collapseTen">
-								How can I contact Mahalaxmi Construction?
-							</a>
-						</div>
-						<div id="collapseTen" class="collapse" data-parent="#accordion-2">
-							<div class="card-body">
-								You can contact us for a site visit and quotation. We provide reliable civil work and waterproofing services with quality assurance.
-							</div>
-						</div>
-					</div>
+					<?php endfor; ?>
 
 				</div>
 			</div>
 
 		</div>
+
 	</div>
 </div>
 <!-- FAQs End -->

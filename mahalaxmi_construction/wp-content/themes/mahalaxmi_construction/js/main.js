@@ -54,7 +54,7 @@
         delay: 10,
         time: 2000
     });
-    
+
     
     // Modal Video
     $(document).ready(function () {
